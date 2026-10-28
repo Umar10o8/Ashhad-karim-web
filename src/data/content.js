@@ -59,6 +59,16 @@ export const about = {
   ],
 }
 
+// Home-page extras. Every phrase is taken from the CV-sourced copy above and in pages.js.
+export const home = {
+  marquee: ['Exhibition stands', 'Large-format printing', 'Branding', 'Fabrication', 'Pre-production', 'Installation'],
+  marqueeIndustries: ['Exhibitions', 'Conferences', 'Trade shows', 'Events', 'Brand activation'],
+  statement: 'I manage projects from concept development to final execution, coordinating client servicing, production, fabrication, and installation teams to deliver quality, efficiency, and client satisfaction.',
+  aboutLink: { label: 'More about me', href: url('about/') },
+  experienceHint: 'Keep scrolling',
+  contactLink: { label: 'Get in touch', href: url('contact/') },
+}
+
 export const sections = {
   expertise: {
     number: '02',

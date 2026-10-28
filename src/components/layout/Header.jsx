@@ -5,6 +5,7 @@ import useScrollThreshold from '../../hooks/useScrollThreshold.js'
 import NavLinks from '../navigation/NavLinks.jsx'
 import Wordmark from '../navigation/Wordmark.jsx'
 import Button from '../ui/Button.jsx'
+import ScrollProgress from './ScrollProgress.jsx'
 import { currentPage, url } from '../../utils/paths.js'
 
 // Scroll-spy only runs on the home page, where the section links point.
@@ -57,6 +58,7 @@ function Header() {
           <Button href={url('contact/')} className="nav-cta" onClick={closeMenu}>Contact Me</Button>
         </nav>
       </div>
+      <ScrollProgress />
     </header>
   )
 }
