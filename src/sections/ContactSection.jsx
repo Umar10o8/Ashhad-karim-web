@@ -17,6 +17,9 @@ function ContactSection() {
 
   return (
     <Section id="contact" tone="dark" className="contact-section">
+      <div className="contact-bg" aria-hidden="true">
+        <img src={copy.background.src} srcSet={copy.background.srcSet} sizes="100vw" width={copy.background.width} height={copy.background.height} alt="" loading="lazy" decoding="async" />
+      </div>
       <div className="contact-hero" data-reveal>
         <p className="section-label"><span>{copy.number}</span><span>{copy.label}</span></p>
         <h2 id="contact-title" className="contact-title">{copy.title} <em>{copy.emphasis}</em></h2>

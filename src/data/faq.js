@@ -1,19 +1,20 @@
 // Answers drawn only from the supplied CV. Keep claims within what the CV states.
+// Written in the first person, as Ashhad answering visitors' questions.
 const faq = [
   {
     group: 'The role',
     items: [
       {
-        q: 'What does Ashhad do?',
-        a: 'He works as Pre-Production Supervisor / Production Coordinator at Print Works & Fabrication in the UAE, a role he has held since 2021. He takes design briefs from clients and client servicing executives, leads the design team, and coordinates approved designs through production, delivery, and installation.',
+        q: 'What do you do?',
+        a: 'I work as Pre-Production Supervisor / Production Coordinator at Print Works & Fabrication in the UAE, a role I have held since 2021. I take design briefs from clients and client servicing executives, lead the design team, and coordinate approved designs through production, delivery, and installation.',
       },
       {
-        q: 'Which industries does he work in?',
+        q: 'Which industries do you work in?',
         a: 'Exhibitions, conferences, trade shows, events, and brand activation, covering exhibition stands, large-format printing, branding, and fabrication.',
       },
       {
-        q: 'How much experience does he have?',
-        a: 'His career began in 2004 as a Pre-Press Studio Graphic Layout Artist. Since then he has worked for six companies in Pakistan, Oman, and the UAE, moving into 3D exhibition stand design and then production supervision.',
+        q: 'How much experience do you have?',
+        a: 'My career began in 2004 as a Pre-Press Studio Graphic Layout Artist. Since then I have worked for six companies in Pakistan, Oman, and the UAE, moving into 3D exhibition stand design and then production supervision.',
       },
       {
         q: 'What does pre-production involve?',
@@ -25,16 +26,16 @@ const faq = [
     group: 'Skills and tools',
     items: [
       {
-        q: 'Which software does he use?',
+        q: 'Which software do you use?',
         a: 'Adobe Creative Suite (Illustrator, Photoshop, InDesign, and After Effects), AutoCAD, SketchUp, and 3ds Max.',
       },
       {
-        q: 'Which print and fabrication machinery does he know?',
-        a: 'His CV lists UV printing, HP printers including the Latex L26500, DesignJet L6500, Scitex KL 1500, and flatbed models, Vutek 2360, 3300, and 3360, Roland RS-640, Challenger FY-3208H (Seiko), DGI Space Jet, Zünd cutting, Roland plotter cutting, CNC routing, and CNC laser cutting.',
+        q: 'Which print and fabrication machinery do you know?',
+        a: 'My CV lists UV printing, HP printers including the Latex L26500, DesignJet L6500, Scitex KL 1500, and flatbed models, Vutek 2360, 3300, and 3360, Roland RS-640, Challenger FY-3208H (Seiko), DGI Space Jet, Zünd cutting, Roland plotter cutting, CNC routing, and CNC laser cutting.',
       },
       {
-        q: 'Does he design exhibition stands?',
-        a: 'Yes. From 2013 to 2021 he worked as a Pre-Press Studio Graphic Layout Artist cum 3D Designer for exhibition stands, and he now coordinates stand artwork and design requirements through production.',
+        q: 'Do you design exhibition stands?',
+        a: 'Yes. From 2013 to 2021 I worked as a Pre-Press Studio Graphic Layout Artist cum 3D Designer for exhibition stands, and I now coordinate stand artwork and design requirements through production.',
       },
     ],
   },
@@ -42,20 +43,20 @@ const faq = [
     group: 'Working together',
     items: [
       {
-        q: 'Does he manage teams?',
-        a: 'Yes. He leads a five-member design team, delegating tasks and advising on every part of a project. He led the pre-production team for four years and has trained and mentored junior staff.',
+        q: 'Do you manage teams?',
+        a: 'Yes. I lead a five-member design team, delegating tasks and advising on every part of a project. I led the pre-production team for four years and have trained and mentored junior staff.',
       },
       {
-        q: 'How many projects can he handle at once?',
+        q: 'How many projects can you handle at once?',
         a: 'Up to five projects or tasks at the same time, under strict daily deadlines.',
       },
       {
-        q: 'Is he involved on site during installation?',
-        a: 'Yes. He visits the site with the installation team and stays available until the project is complete.',
+        q: 'Are you involved on site during installation?',
+        a: 'Yes. I visit the site with the installation team and stay available until the project is complete.',
       },
       {
-        q: 'Is he open to new opportunities?',
-        a: 'He is open to conversations about production, pre-production, and project coordination roles and projects. The contact page has the details.',
+        q: 'Are you open to new opportunities?',
+        a: 'I am open to conversations about production, pre-production, and project coordination roles and projects. The contact page has the details.',
       },
     ],
   },

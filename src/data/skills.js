@@ -18,7 +18,7 @@ const skills = [
     group: 'Production equipment and machinery',
     icon: Printer,
     wide: true,
-    note: 'Equipment listed in the CV across print, cutting, and fabrication roles.',
+    note: 'Equipment listed in my CV across print, cutting, and fabrication roles.',
     items: [
       'UV printing equipment',
       'HP 5500',

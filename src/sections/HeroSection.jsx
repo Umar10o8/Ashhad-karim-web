@@ -31,15 +31,6 @@ function HeroSection() {
       </div>
       {image.placeholder && <PlaceholderTag>Representative industry image</PlaceholderTag>}
 
-      {/* Spinning circular text badge (desktop only, decorative) */}
-      <a className="hero-badge" href={hero.scrollCue.href} aria-hidden="true" tabIndex={-1}>
-        <svg viewBox="0 0 120 120">
-          <defs><path id="hero-badge-path" d="M60 60m-46 0a46 46 0 1 1 92 0a46 46 0 1 1-92 0" /></defs>
-          <text><textPath href="#hero-badge-path" textLength="286" lengthAdjust="spacing">Production · Pre-production · Coordination · </textPath></text>
-        </svg>
-        <ArrowDown size={26} />
-      </a>
-
       <div className="page-wrap hero-inner">
         <div className="hero-copy">
           <p className="eyebrow hero-eyebrow"><span aria-hidden="true" />{hero.eyebrow}</p>
@@ -75,8 +66,16 @@ function HeroSection() {
         </div>
 
         <div className="hero-foot">
+          {/* On desktop the arrow sits inside a spinning ring of text */}
           <a className="hero-scroll" href={hero.scrollCue.href}>
-            {hero.scrollCue.label} <ArrowDown size={18} aria-hidden="true" />
+            <span className="hero-badge" aria-hidden="true">
+              <svg viewBox="0 0 120 120">
+                <defs><path id="hero-badge-path" d="M60 60m-46 0a46 46 0 1 1 92 0a46 46 0 1 1-92 0" /></defs>
+                <text><textPath href="#hero-badge-path" textLength="286" lengthAdjust="spacing">Production · Pre-production · Coordination · </textPath></text>
+              </svg>
+              <ArrowDown size={18} />
+            </span>
+            {hero.scrollCue.label}
           </a>
           <div className="hero-counter">
             <span className="hero-counter-num" aria-hidden="true">{pad(active + 1)}</span>

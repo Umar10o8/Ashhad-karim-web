@@ -42,7 +42,7 @@ function SkillsBentoSection() {
         ))}
         <div className="bento-tile bento-count" data-reveal>
           <span className="bento-big">{equipment.items.length}</span>
-          <p>Machines and systems named in the CV</p>
+          <p>Machines and systems named in my CV</p>
         </div>
         <div className="bento-tile bento-equipment" data-reveal>
           <h3>{equipment.group}</h3>

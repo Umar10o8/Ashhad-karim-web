@@ -5,7 +5,9 @@ import ChipList from '../components/ui/ChipList.jsx'
 import ResponsiveImage from '../components/ui/ResponsiveImage.jsx'
 
 // `number` overrides the section number when the section is reused on another page.
+// The About page uses the close portrait (about.portraitAlt).
 function AboutSection({ number = about.number }) {
+  const portrait = about.portraitAlt
   return (
     <Section id="about">
       <div className="about-grid">
@@ -22,7 +24,7 @@ function AboutSection({ number = about.number }) {
 
         <div className="about-aside">
           <div className="about-portrait" data-reveal="mask">
-            <ResponsiveImage image={about.portrait} alt={about.portrait.alt} ratio="4 / 3" sizes="(min-width: 801px) 32vw, 100vw" className="reveal-mask" />
+            <ResponsiveImage image={portrait} alt={portrait.alt} ratio="4 / 5" sizes="(min-width: 801px) 32vw, 100vw" className="reveal-mask" />
           </div>
           <div className="strengths-card" data-reveal>
             <h3 id="strengths-title">Core strengths</h3>

@@ -1,21 +1,14 @@
 // Central contact configuration. Every section that shows contact details reads from here.
 //
-// ⚠ NOT YET CONFIRMED. The supplied materials contain two different sets of details that
-// may belong to different professional contexts. Ashhad must approve which (if any) to
-// publish before the site goes live. Do not publish both sets together.
-//
-//   CV / LinkedIn:           karimashhad@yahoo.com      +971 52 2604376
-//   Professional signature:  ASHHAD.KARIM@THE.TEAM      +966 (50) 6334858
-//                            (Production Manager, Production — THE.TEAM)
-//
-// Once approved: set `email`, `phone` and `phoneHref` below, then set `confirmed: true`.
+// Confirmed for publishing: the CV / LinkedIn details. The THE.TEAM signature details
+// (ASHHAD.KARIM@THE.TEAM, +966 (50) 6334858) are not published. Do not show both sets together.
 // While `confirmed` is false the site shows a visible "placeholder" tag beside the details.
 
 const contact = {
-  confirmed: false,
-  email: 'name@example.com',
-  phone: '+000 00 000 0000',
-  phoneHref: '+000000000000', // digits only, with country code, for the tel: link
+  confirmed: true,
+  email: 'karimashhad@yahoo.com',
+  phone: '+971 52 260 4376',
+  phoneHref: '+971522604376', // digits only, with country code, for the tel: link
   emailSubject: 'Enquiry via your portfolio',
 }
 

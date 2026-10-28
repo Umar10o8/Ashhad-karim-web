@@ -2,10 +2,14 @@
 // Source: supplied CV and LinkedIn About text. Do not add unverified claims.
 import { responsiveAsset } from '../utils/images.js'
 import heroSm from '../assets/images/portrait/hero-riyadh-window-800.webp'
-import heroLg from '../assets/images/portrait/hero-riyadh-window-1600.webp'
+import heroLg from '../assets/images/portrait/hero-riyadh-window-1536.webp'
 import aboutSm from '../assets/images/portrait/about-office-800.webp'
 import aboutLg from '../assets/images/portrait/about-office-1600.webp'
-import avatar from '../assets/images/portrait/contact-avatar-240.webp'
+import thinkingSm from '../assets/images/portrait/portrait-thinking-600.webp'
+import thinkingLg from '../assets/images/portrait/portrait-thinking-848.webp'
+import nightSm from '../assets/images/portrait/riyadh-night-street-1000.webp'
+import nightLg from '../assets/images/portrait/riyadh-night-street-2000.webp'
+import avatar from '../assets/images/portrait/contact-avatar-480.webp'
 import { localImage } from '../utils/images.js'
 import { url } from '../utils/paths.js'
 
@@ -29,7 +33,7 @@ export const hero = {
   secondaryCta: { label: 'Explore My Experience', href: '#experience' },
   // Supplied portrait of Ashhad. Set `placeholder: true` (and a `credit`) only for stock images.
   image: {
-    ...responsiveAsset({ small: heroSm, large: heroLg, width: 1600, height: 2000 }),
+    ...responsiveAsset({ small: heroSm, large: heroLg, width: 1536, height: 2752 }),
     alt: 'Ashhad Karim standing at an office window overlooking the Riyadh skyline at night',
   },
 }
@@ -45,8 +49,13 @@ export const about = {
     'Adept at coordinating with client servicing, production, fabrication, and installation teams to deliver successful outcomes, with a passion for creative problem-solving and continuous professional growth.',
   ],
   portrait: {
-    ...responsiveAsset({ small: aboutSm, large: aboutLg, width: 1600, height: 1200 }),
+    ...responsiveAsset({ small: aboutSm, large: aboutLg, width: 1600, height: 893 }),
     alt: 'Ashhad Karim smiling at his desk in a bright office',
+  },
+  // Close portrait used on the About page, so it does not repeat the home-page photo.
+  portraitAlt: {
+    ...responsiveAsset({ small: thinkingSm, large: thinkingLg, width: 848, height: 1264, smallWidth: 600 }),
+    alt: 'Ashhad Karim, chin resting on his hand, in a light green shirt',
   },
   tools: ['Adobe Creative Suite', 'AutoCAD', 'SketchUp', '3ds Max'],
   strengths: [
@@ -104,7 +113,7 @@ export const sections = {
     title: 'Selected',
     emphasis: 'work.',
     intro: 'A selection of exhibition stands, print, branding, and fabrication work.',
-    placeholderIntro: 'The images below are generic industry photographs used as placeholders. They are not Ashhad’s own projects and will be replaced with verified project photography.',
+    placeholderIntro: 'The images below are generic industry photographs used as placeholders. They are not my own projects and will be replaced with verified project photography.',
   },
   achievements: {
     number: '07',
@@ -126,7 +135,9 @@ export const sections = {
     emphasis: 'opportunity.',
     intro: 'Open to conversations about production, pre-production, and project coordination roles and projects.',
     cta: 'Send an Email',
-    avatar: { ...localImage(avatar, 240, 240), alt: '' },
+    avatar: { ...localImage(avatar, 480, 480), alt: '' },
+    // Decorative background photo behind the home contact section
+    background: responsiveAsset({ small: nightSm, large: nightLg, width: 2000, height: 1116, smallWidth: 1000 }),
   },
 }
 

@@ -12,6 +12,9 @@ import ContactSection from '../sections/ContactSection.jsx'
 import Marquee from '../components/home/Marquee.jsx'
 import CursorFollower from '../components/home/CursorFollower.jsx'
 
+// Work areas alternating with industries: "Exhibition stands · Exhibitions · Large-format printing · …"
+const tickerItems = home.marquee.flatMap((area, index) => [area, home.marqueeIndustries[index]]).filter(Boolean)
+
 // The home page uses its own, more animated takes on About, Experience, Skills, and
 // Achievements; the About page keeps the fuller static versions.
 function HomePage() {
@@ -19,8 +22,7 @@ function HomePage() {
     <>
       <HeroSection />
       <div className="marquee-band">
-        <Marquee items={home.marquee} label="Areas of work" />
-        <Marquee items={home.marqueeIndustries} reverse outline label="Industries" />
+        <Marquee items={tickerItems} label="Areas of work and industries" />
       </div>
       <StatementSection />
       <ExpertiseSection />
