@@ -1,0 +1,125 @@
+// Site copy. Sections render this text; they do not contain copy of their own.
+// Source: supplied CV and LinkedIn About text. Do not add unverified claims.
+import { responsiveAsset } from '../utils/images.js'
+import heroSm from '../assets/images/portrait/hero-riyadh-window-800.webp'
+import heroLg from '../assets/images/portrait/hero-riyadh-window-1600.webp'
+import aboutSm from '../assets/images/portrait/about-office-800.webp'
+import aboutLg from '../assets/images/portrait/about-office-1600.webp'
+import avatar from '../assets/images/portrait/contact-avatar-240.webp'
+import { localImage } from '../utils/images.js'
+import { url } from '../utils/paths.js'
+
+export const hero = {
+  eyebrow: 'Production · Pre-Production · Project Coordination',
+  title: 'Bringing Creative Concepts to',
+  emphasis: 'Production.',
+  intro: 'I’m Ashhad Karim, a production and pre-production professional experienced in exhibition stands, large-format printing, branding, and fabrication. I coordinate creative and production teams to help turn concepts into high-quality physical outcomes.',
+  name: 'Ashhad Karim',
+  focus: 'Production, Pre-Production & Project Coordination',
+  focusAreas: ['Exhibition stands', 'Large-format printing', 'Branding', 'Fabrication'],
+  // Rotating headlines. Figures come from the CV timeline in experience.js: first role 2004,
+  // six employers across the UAE, Oman, and Pakistan.
+  slides: [
+    { stat: '20+', title: 'Years in print &', emphasis: 'production.' },
+    { stat: '6', title: 'Companies across', emphasis: 'three countries.' },
+    { title: 'Bringing creative concepts to', emphasis: 'production.' },
+  ],
+  scrollCue: { label: 'Scroll down', href: '#about' },
+  primaryCta: { label: 'Get in Touch', href: url('contact/') },
+  secondaryCta: { label: 'Explore My Experience', href: '#experience' },
+  // Supplied portrait of Ashhad. Set `placeholder: true` (and a `credit`) only for stock images.
+  image: {
+    ...responsiveAsset({ small: heroSm, large: heroLg, width: 1600, height: 2000 }),
+    alt: 'Ashhad Karim standing at an office window overlooking the Riyadh skyline at night',
+  },
+}
+
+export const about = {
+  number: '01',
+  label: 'About',
+  title: 'From concept development to',
+  emphasis: 'final execution.',
+  lead: 'Experienced Pre-Production and Design Professional with a strong background in large-format printing, exhibition stands, branding, and fabrication.',
+  paragraphs: [
+    'Skilled in managing projects from concept development to final execution, ensuring quality, efficiency, and client satisfaction.',
+    'Adept at coordinating with client servicing, production, fabrication, and installation teams to deliver successful outcomes, with a passion for creative problem-solving and continuous professional growth.',
+  ],
+  portrait: {
+    ...responsiveAsset({ small: aboutSm, large: aboutLg, width: 1600, height: 1200 }),
+    alt: 'Ashhad Karim smiling at his desk in a bright office',
+  },
+  tools: ['Adobe Creative Suite', 'AutoCAD', 'SketchUp', '3ds Max'],
+  strengths: [
+    'Production coordination',
+    'Pre-production workflow management',
+    'Design-to-production handoff',
+    'Cross-functional collaboration',
+    'Quality control',
+    'Deadline management',
+  ],
+}
+
+export const sections = {
+  expertise: {
+    number: '02',
+    label: 'Expertise',
+    title: 'Areas of',
+    emphasis: 'professional expertise.',
+    intro: 'The parts of the production workflow I work across, from preparing files before print to following projects through installation.',
+  },
+  experience: {
+    number: '03',
+    label: 'Experience',
+    title: 'A career built in',
+    emphasis: 'pre‑press and production.',
+    intro: 'A career that started in the pre-press studio and grew into exhibition stand design, production coordination, and supervising pre-production.',
+  },
+  responsibilities: {
+    number: '04',
+    label: 'Responsibilities',
+    title: 'From brief to site,',
+    emphasis: 'start to finish.',
+    intro: 'What the role involves day to day, following a project through each stage of the workflow.',
+  },
+  skills: {
+    number: '05',
+    label: 'Skills',
+    title: 'Software and',
+    emphasis: 'technical skills.',
+    intro: 'Design software used for artwork, layout, and 3D, alongside the print, cutting, and fabrication equipment listed in my CV.',
+  },
+  portfolio: {
+    number: '06',
+    label: 'Portfolio',
+    title: 'Selected',
+    emphasis: 'work.',
+    intro: 'A selection of exhibition stands, print, branding, and fabrication work.',
+    placeholderIntro: 'The images below are generic industry photographs used as placeholders. They are not Ashhad’s own projects and will be replaced with verified project photography.',
+  },
+  achievements: {
+    number: '07',
+    label: 'Achievements',
+    title: 'Professional',
+    emphasis: 'achievements.',
+  },
+  testimonials: {
+    number: '08',
+    label: 'Testimonials',
+    title: 'What people say about',
+    emphasis: 'working together.',
+    intro: 'Words from clients, managers, and colleagues across design, production, and installation.',
+  },
+  contact: {
+    number: '09',
+    label: 'Contact',
+    title: 'Let’s discuss your next',
+    emphasis: 'opportunity.',
+    intro: 'Open to conversations about production, pre-production, and project coordination roles and projects.',
+    cta: 'Send an Email',
+    avatar: { ...localImage(avatar, 240, 240), alt: '' },
+  },
+}
+
+export const footer = {
+  descriptor: 'Production, Pre-Production & Project Coordination',
+}
