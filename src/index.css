@@ -808,6 +808,19 @@ h1 em, h2 em { font-family: var(--font-serif); font-weight: 400; font-style: ita
   .hero-scroll:hover .hero-badge .lucide { background: var(--color-magenta); border-color: var(--color-magenta); }
 }
 
+/* The hero photo is a tall portrait: full-bleed on a wide screen it zooms in until only part
+   of the head shows, so from tablet up it sits in a right-hand panel that fades into the
+   charcoal under the copy, keeping head, shoulders and skyline in frame. */
+@media (min-width: 801px) {
+  .hero-bg { left: auto; width: clamp(420px, 44%, 820px); -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 28%); mask-image: linear-gradient(90deg, transparent 0%, #000 28%); }
+  .hero-bg img { object-position: 68% 22%; animation-name: hero-drift-soft; }
+  .hero-bg::after { background:
+    linear-gradient(0deg, rgb(24 10 17 / .55) 0%, transparent 26%),
+    linear-gradient(180deg, rgb(24 10 17 / .35) 0%, transparent 18%); }
+  .hero::before { position: absolute; z-index: -2; inset: 0; background: radial-gradient(60% 70% at 0% 100%, rgb(142 18 63 / .4), transparent 70%); content: ''; }
+}
+@keyframes hero-drift-soft { from { transform: scale(1.06); } to { transform: scale(1); } }
+
 @media (max-width: 1024px) {
   .page-hero-inner { grid-template-columns: 1fr; gap: var(--space-7); }
   .page-hero-media { max-width: 560px; }
