@@ -1,8 +1,9 @@
 import { useEffect } from 'react'
 
 const MAX_STAGGER_STEPS = 4
-const REVEAL_MS = 720 // matches --duration-slow; masks use --duration-image
-const MASK_MS = 1100
+const REVEAL_MS = 760 // matches --duration-slow; masks use --duration-image
+const MASK_MS = 900
+const STAGGER_MS = 100 // matches --stagger
 
 // Reveals [data-reveal] elements once as they enter the viewport.
 //   data-reveal         fade and rise (default)
@@ -35,7 +36,7 @@ function useReveal() {
         .sort((a, b) => (a.compareDocumentPosition(b) & Node.DOCUMENT_POSITION_FOLLOWING ? -1 : 1))
 
       entering.forEach((element, index) => {
-        const delay = Math.min(index, MAX_STAGGER_STEPS) * 70
+        const delay = Math.min(index, MAX_STAGGER_STEPS) * STAGGER_MS
         element.style.setProperty('--reveal-delay', `${delay}ms`)
         element.classList.add('is-visible')
         intersection.unobserve(element)
