@@ -7,6 +7,9 @@ import { url } from '../utils/paths.js'
 const navigation = [
   { id: 'about', label: 'About', href: url('about/'), page: 'about' },
   { id: 'experience', label: 'Experience', href: url('#experience'), section: true },
+  { id: 'skills', label: 'Skills', href: url('#skills'), section: true },
+  { id: 'achievements', label: 'Achievements', href: url('#achievements'), section: true },
+  { id: 'contact', label: 'Contact', href: url('#contact'), section: true },
 ]
 
 export default navigation

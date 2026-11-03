@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
+import { ArrowUpRight } from 'lucide-react'
 import navigation from '../../data/navigation.js'
 import useActiveSection from '../../hooks/useActiveSection.js'
 import useScrollThreshold from '../../hooks/useScrollThreshold.js'
@@ -8,13 +9,15 @@ import Button from '../ui/Button.jsx'
 import ScrollProgress from './ScrollProgress.jsx'
 import { currentPage, url } from '../../utils/paths.js'
 
-// Scroll-spy runs on the home page for sections whose IDs match navigation links.
-const observedIds = currentPage === 'home' ? ['home', ...navigation.map(({ id }) => id)] : []
+// Scroll-spy runs on the home page for every section that has a menu link.
+const observedIds = currentPage === 'home' ? navigation.map(({ id }) => id) : []
 
+// Floating glass pill: wordmark, links, and the Contact Me button. It tightens and frosts a
+// little more once the page scrolls; the reading-progress line runs along its lower edge.
 function Header() {
   const [menuOpen, setMenuOpen] = useState(false)
   const menuButtonRef = useRef(null)
-  const scrolled = useScrollThreshold(8)
+  const scrolled = useScrollThreshold(24)
   const activeId = useActiveSection(observedIds)
   const closeMenu = () => setMenuOpen(false)
 
@@ -22,7 +25,7 @@ function Header() {
   // to the desktop layout.
   useEffect(() => {
     if (!menuOpen) return
-    const desktop = window.matchMedia('(min-width: 1025px)')
+    const desktop = window.matchMedia('(min-width: 1101px)')
     const handleKey = (event) => {
       if (event.key !== 'Escape') return
       setMenuOpen(false)
@@ -39,7 +42,7 @@ function Header() {
 
   return (
     <header className={`site-header${scrolled ? ' is-scrolled' : ''}${menuOpen ? ' menu-open' : ''}`}>
-      <div className="header-inner page-wrap glass-surface">
+      <div className="hdr-pill">
         <Wordmark onClick={closeMenu} />
         {/* The toggle precedes the nav so that, on mobile, Tab moves from it straight into the open menu. */}
         <button
@@ -55,10 +58,10 @@ function Header() {
         </button>
         <nav id="main-nav" className={`nav-links${menuOpen ? ' is-open' : ''}`} aria-label="Main navigation">
           <NavLinks activeId={activeId} onNavigate={closeMenu} linkClassName="nav-link" />
-          <Button href={url('contact/')} className="nav-cta" onClick={closeMenu}>Contact Me</Button>
+          <Button href={url('contact/')} className="nav-cta" icon={ArrowUpRight} onClick={closeMenu}>Contact Me</Button>
         </nav>
+        <ScrollProgress />
       </div>
-      <ScrollProgress />
     </header>
   )
 }

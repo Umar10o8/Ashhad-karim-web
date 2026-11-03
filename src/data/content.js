@@ -3,6 +3,8 @@
 import { responsiveAsset } from '../utils/images.js'
 import heroSm from '../assets/images/portrait/hero-horizontal-800.webp'
 import heroLg from '../assets/images/portrait/hero-horizontal-1418.webp'
+import heroSmAvif from '../assets/images/portrait/hero-horizontal-800.avif'
+import heroLgAvif from '../assets/images/portrait/hero-horizontal-1418.avif'
 import aboutSm from '../assets/images/portrait/about-office-800.webp'
 import aboutLg from '../assets/images/portrait/about-office-1600.webp'
 import thinkingSm from '../assets/images/portrait/portrait-thinking-600.webp'
@@ -42,6 +44,7 @@ export const hero = {
   // Supplied photo of Ashhad. Set `placeholder: true` (and a `credit`) only for stock images.
   image: {
     ...responsiveAsset({ small: heroSm, large: heroLg, width: 1418, height: 791 }),
+    avifSrcSet: `${heroSmAvif} 800w, ${heroLgAvif} 1418w`,
     alt: 'Ashhad Karim standing at an office window overlooking the Riyadh skyline at night',
   },
 }
