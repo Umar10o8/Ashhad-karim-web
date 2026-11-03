@@ -1,6 +1,6 @@
 import { useRef } from 'react'
 import { ArrowUpRight, Mail, Phone } from 'lucide-react'
-import contact, { mailtoHref, telHref } from '../config/contact.js'
+import contact, { mailtoHref, phoneLinks } from '../config/contact.js'
 import { hero, home, sections } from '../data/content.js'
 import ContactMethod from '../components/contact/ContactMethod.jsx'
 import ContactForm from '../components/contact/ContactForm.jsx'
@@ -49,7 +49,7 @@ function ContactSection() {
             </div>
             <address className="contact-cards">
               <ContactMethod icon={Mail} label="Email" value={contact.email} href={mailtoHref} />
-              <ContactMethod icon={Phone} label="Phone" value={contact.phone} href={telHref} />
+              <ContactMethod icon={Phone} label="Phone" links={phoneLinks} />
               {!contact.confirmed && <PlaceholderTag>Contact details awaiting confirmation</PlaceholderTag>}
             </address>
           </div>

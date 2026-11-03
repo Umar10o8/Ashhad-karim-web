@@ -1,5 +1,5 @@
 import { ArrowUp, ArrowUpRight } from 'lucide-react'
-import contact, { mailtoHref, telHref } from '../../config/contact.js'
+import contact, { mailtoHref, phoneLinks } from '../../config/contact.js'
 import { footer } from '../../data/content.js'
 import NavLinks from '../navigation/NavLinks.jsx'
 import PlaceholderTag from '../ui/PlaceholderTag.jsx'
@@ -28,7 +28,7 @@ function Footer() {
         <address className="footer-col">
           <p className="footer-heading">Contact</p>
           <a className="footer-link" href={mailtoHref}>{contact.email}</a>
-          <a className="footer-link" href={telHref}>{contact.phone}</a>
+          {phoneLinks.map(({ value, href }) => <a key={href} className="footer-link" href={href}>{value}</a>)}
           {!contact.confirmed && <PlaceholderTag>Awaiting confirmation</PlaceholderTag>}
         </address>
       </div>

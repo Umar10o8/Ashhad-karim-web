@@ -66,17 +66,11 @@ export const contactPage = {
   form: {
     title: 'Send a message',
     text: 'Fill in the form and your email app opens with the message ready to send.',
-    topics: ['Job opportunity', 'Project enquiry', 'Exhibition or event', 'Something else'],
+    topics: ['Job opportunity', 'Freelance project', 'Something else'],
     submit: 'Open in email app',
   },
   details: {
     title: 'Contact details',
-    helpTitle: 'Areas to talk about',
-    help: [
-      'Pre-production and artwork preparation',
-      'Exhibition stand design coordination',
-      'Large-format print production',
-      'Fabrication and installation coordination',
-    ],
+    logoAlt: 'Karim Creative Studio',
   },
 }
