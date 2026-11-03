@@ -6,7 +6,7 @@ const faq = [
     items: [
       {
         q: 'What do you do?',
-        a: 'I work as Pre-Production Supervisor / Production Coordinator at Print Works & Fabrication in the UAE, a role I have held since 2021. I take design briefs from clients and client servicing executives, lead the design team, and coordinate approved designs through production, delivery, and installation.',
+        a: 'I am Production Manager at THE.TEAM in Saudi Arabia, a role I started in 2026. Before that, from 2021 to 2026, I was Pre-Production Supervisor at Print Works & Fabrication in the UAE, taking design briefs from clients and client servicing executives, leading the design team, and coordinating approved designs through production, delivery, and installation.',
       },
       {
         q: 'Which industries do you work in?',
@@ -14,7 +14,7 @@ const faq = [
       },
       {
         q: 'How much experience do you have?',
-        a: 'My career began in 2004 as a Pre-Press Studio Graphic Layout Artist. Since then I have worked for six companies in Pakistan, Oman, and the UAE, moving into 3D exhibition stand design and then production supervision.',
+        a: 'My career began in 2004 as a Pre-Press Studio Graphic Layout Artist. Since then I have worked for seven companies in Pakistan, Oman, the UAE, and Saudi Arabia, moving into 3D exhibition stand design, then production supervision, and now production management.',
       },
       {
         q: 'What does pre-production involve?',
@@ -35,7 +35,7 @@ const faq = [
       },
       {
         q: 'Do you design exhibition stands?',
-        a: 'Yes. From 2013 to 2021 I worked as a Pre-Press Studio Graphic Layout Artist cum 3D Designer for exhibition stands, and I now coordinate stand artwork and design requirements through production.',
+        a: 'Yes. From 2013 to 2021 I worked as a Pre-Press Studio Graphic Layout Artist cum 3D Designer for exhibition stands, and I went on to coordinate stand artwork and design requirements through production.',
       },
     ],
   },
@@ -44,7 +44,7 @@ const faq = [
     items: [
       {
         q: 'Do you manage teams?',
-        a: 'Yes. I lead a five-member design team, delegating tasks and advising on every part of a project. I led the pre-production team for four years and have trained and mentored junior staff.',
+        a: 'Yes. I am Production Manager at THE.TEAM. At Print Works & Fabrication I led a five-member design team, delegating tasks and advising on every part of a project; I led the pre-production team there for four years and have trained and mentored junior staff.',
       },
       {
         q: 'How many projects can you handle at once?',

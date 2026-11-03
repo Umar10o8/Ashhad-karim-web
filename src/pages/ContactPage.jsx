@@ -15,14 +15,14 @@ function ContactPage() {
   return (
     <>
       <PageHero id="contact-page" {...hero} />
-      <section className="section contact-page" aria-labelledby="contact-form-title">
+      <section className="section contact-page soft-mesh" aria-labelledby="contact-form-title">
         <div className="page-wrap contact-page-grid">
           <div className="contact-form-card" data-reveal>
             <ContactForm />
           </div>
 
           <aside className="contact-aside" aria-label={details.title} data-reveal>
-            <div className="contact-panel surface-dark">
+            <div className="contact-panel surface-dark glass-surface-dark">
               <div className="contact-person">
                 <img src={avatar.src} width={avatar.width} height={avatar.height} alt={avatar.alt} loading="lazy" decoding="async" />
                 <span><strong>{homeHero.name}</strong>{homeHero.focus}</span>

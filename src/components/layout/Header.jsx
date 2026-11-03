@@ -8,8 +8,8 @@ import Button from '../ui/Button.jsx'
 import ScrollProgress from './ScrollProgress.jsx'
 import { currentPage, url } from '../../utils/paths.js'
 
-// Scroll-spy only runs on the home page, where the section links point.
-const observedIds = currentPage === 'home' ? ['home', ...navigation.filter(({ section }) => section).map(({ id }) => id)] : []
+// Scroll-spy runs on the home page for sections whose IDs match navigation links.
+const observedIds = currentPage === 'home' ? ['home', ...navigation.map(({ id }) => id)] : []
 
 function Header() {
   const [menuOpen, setMenuOpen] = useState(false)
@@ -39,7 +39,7 @@ function Header() {
 
   return (
     <header className={`site-header${scrolled ? ' is-scrolled' : ''}${menuOpen ? ' menu-open' : ''}`}>
-      <div className="header-inner page-wrap">
+      <div className="header-inner page-wrap glass-surface">
         <Wordmark onClick={closeMenu} />
         {/* The toggle precedes the nav so that, on mobile, Tab moves from it straight into the open menu. */}
         <button

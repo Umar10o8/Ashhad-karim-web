@@ -1,12 +1,11 @@
 import navigation from '../../data/navigation.js'
 import { currentPage } from '../../utils/paths.js'
 
-// Links shared by the header and footer. Page links are active on their page; section links are
-// active while their home-page section is in view (`activeId`).
+// Links shared by the header and footer. Links are active on their page or matching home section.
 function NavLinks({ activeId, onNavigate, linkClassName }) {
-  return navigation.map(({ id, label, href, page, section }) => {
+  return navigation.map(({ id, label, href, page }) => {
     const isPage = page === currentPage
-    const isSection = section && currentPage === 'home' && activeId === id
+    const isSection = currentPage === 'home' && activeId === id
     const isActive = isPage || isSection
     return (
       <a

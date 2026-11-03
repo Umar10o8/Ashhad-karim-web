@@ -16,9 +16,8 @@ function TimelineEntry({ role, company, location, start, end, current }) {
           <h3>{role}</h3>
           {current && <span className="badge">Current</span>}
         </div>
-        <p className="timeline-meta">
-          {company} <span aria-hidden="true">·</span> <MapPin size={14} aria-hidden="true" /> {location}
-        </p>
+        <p className="timeline-company">{company}</p>
+        <p className="timeline-meta"><MapPin size={14} aria-hidden="true" /> {location}</p>
       </Card>
     </li>
   )
@@ -27,7 +26,7 @@ function TimelineEntry({ role, company, location, start, end, current }) {
 // `number` overrides the section number when the section is reused on another page.
 function ExperienceSection({ number }) {
   return (
-    <Section id="experience">
+    <Section id="experience" className="about-experience-section soft-mesh">
       <SectionHeader id="experience" {...sections.experience} number={number ?? sections.experience.number} />
       <ol className="timeline">
         {experience.map((item) => <TimelineEntry key={`${item.company}-${item.start}`} {...item} />)}

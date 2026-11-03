@@ -1,18 +1,21 @@
-// Source: supplied CV.
-//
-// ⚠ TO CONFIRM BEFORE PUBLISHING: a separate message mentions "Current job Feb 2026 to present",
-// and a professional signature lists "Production Manager, Production" at THE.TEAM. Neither has
-// been reconciled with the CV, so the CV timeline below is kept unchanged until Ashhad confirms
-// his current title, employer, and start date.
+// Source: supplied CV, plus the current role confirmed by Ashhad from his THE.TEAM signature
+// ("Production Manager, Production", from 2026).
 
 const experience = [
   {
-    role: 'Pre-Production Supervisor / Production Coordinator',
+    role: 'Production Manager',
+    company: 'THE.TEAM',
+    location: 'Saudi Arabia',
+    start: '2026',
+    end: 'Present',
+    current: true,
+  },
+  {
+    role: 'Pre-Production Supervisor',
     company: 'Print Works & Fabrication',
     location: 'UAE',
     start: '2021',
-    end: 'Present',
-    current: true,
+    end: '2026',
   },
   {
     role: 'Pre-Press Studio Graphic Layout Artist cum 3D Designer (Exhibition Stands)',

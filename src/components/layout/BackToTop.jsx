@@ -1,4 +1,5 @@
 import { ArrowUp } from 'lucide-react'
+import { useEffect, useState } from 'react'
 import useScrollThreshold from '../../hooks/useScrollThreshold.js'
 
 const scrollToTop = () => {
@@ -8,7 +9,21 @@ const scrollToTop = () => {
 
 // Always mounted so it can fade in and out; hidden from keyboard and screen readers while invisible.
 function BackToTop() {
-  const visible = useScrollThreshold(900)
+  const beyondThreshold = useScrollThreshold(900)
+  const [footerVisible, setFooterVisible] = useState(false)
+
+  useEffect(() => {
+    const footer = document.querySelector('.footer')
+    if (!footer || !('IntersectionObserver' in window)) return
+
+    const observer = new IntersectionObserver(([entry]) => setFooterVisible(entry.isIntersecting), {
+      rootMargin: '0px 0px -8% 0px',
+    })
+    observer.observe(footer)
+    return () => observer.disconnect()
+  }, [])
+
+  const visible = beyondThreshold && !footerVisible
 
   return (
     <button

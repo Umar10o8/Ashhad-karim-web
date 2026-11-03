@@ -1,29 +1,27 @@
 // Copy for the inner pages (About, FAQ, Contact). Source: supplied CV. Do not add unverified claims.
-import { Briefcase, Building2, Globe2, Users, Layers, Award } from 'lucide-react'
+import { responsiveAsset } from '../utils/images.js'
+import billboardSm from '../assets/images/top-header-800.webp'
+import billboardLg from '../assets/images/top-header-1600.webp'
 
 export const aboutPage = {
   hero: {
     crumb: 'About',
     eyebrow: 'About me',
-    title: 'From the pre-press studio to the',
+    title: 'From the studio to the',
     emphasis: 'production floor.',
     intro: 'Two decades of preparing artwork for print, designing exhibition stands, and coordinating the teams that take a project from approved design to installation.',
   },
   glance: {
-    number: '02',
-    label: 'At a glance',
-    title: 'My career in',
-    emphasis: 'numbers.',
-    intro: 'Figures taken from my CV timeline and role description.',
-    // Figures from the CV: first role 2004; six employers in three countries; a five-member team;
-    // up to five projects at once; four years leading the pre-production team.
+    // Figures from the CV plus the current THE.TEAM role (experience.js): first role 2004; seven
+    // employers in four countries; a five-member team at Print Works; up to five projects at once;
+    // four years leading the pre-production team. The first stat is shown largest.
     stats: [
-      { icon: Briefcase, value: '20+', label: 'Years in pre-press and production, since 2004' },
-      { icon: Building2, value: '6', label: 'Companies in advertising, print, and fabrication' },
-      { icon: Globe2, value: '3', label: 'Countries: UAE, Oman, and Pakistan' },
-      { icon: Users, value: '5', label: 'Members in the design team I lead' },
-      { icon: Layers, value: '5', label: 'Projects or tasks managed at the same time' },
-      { icon: Award, value: '4', label: 'Years leading the pre-production team' },
+      { value: '20+', label: 'Years in print and production, since 2004' },
+      { value: '7', label: 'Companies across advertising, print, and production' },
+      { value: '4', label: 'Countries: Saudi Arabia, UAE, Oman, and Pakistan' },
+      { value: '5', label: 'Designers in the team I led at Print Works' },
+      { value: '5', label: 'Projects or tasks managed at the same time' },
+      { value: '4', label: 'Years leading the pre-production team' },
     ],
     industriesTitle: 'Industries',
     industries: ['Exhibitions', 'Conferences', 'Trade shows', 'Events', 'Brand activation'],
@@ -45,6 +43,10 @@ export const faqPage = {
     title: 'Questions, answered',
     emphasis: 'plainly.',
     intro: 'What I do, the tools and machinery I work with, and how to get in touch.',
+    image: {
+      ...responsiveAsset({ small: billboardSm, large: billboardLg, width: 1600, height: 566 }),
+      alt: 'Outdoor advertising mock-up: a billboard, a wrapped bus, a bus shelter, a directory sign, and a bench',
+    },
   },
   cta: {
     title: 'Didn’t find your answer?',

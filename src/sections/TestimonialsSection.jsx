@@ -1,33 +1,43 @@
-import { Quote } from 'lucide-react'
+import { useState } from 'react'
 import { sections } from '../data/content.js'
 import testimonials from '../data/testimonials.js'
 import Section from '../components/layout/Section.jsx'
 import SectionHeader from '../components/layout/SectionHeader.jsx'
-import PlaceholderTag from '../components/ui/PlaceholderTag.jsx'
 
-const initials = (name) => name.split(/\s+/).map((word) => word[0]).join('').slice(0, 2).toUpperCase()
+// Only real, approved quotes are shown. While every entry in testimonials.js is still a
+// placeholder the section renders nothing, so the live site never shows invented praise.
+const published = testimonials.filter(({ placeholder }) => !placeholder)
 
+// Editorial quote layout: one large quote at a time, with the speakers listed as a numbered
+// index that switches between them.
 function TestimonialsSection() {
+  const [active, setActive] = useState(0)
+  if (!published.length) return null
+  const { quote, name, role } = published[active]
+
   return (
     <Section id="testimonials" className="testimonials-section">
       <SectionHeader id="testimonials" {...sections.testimonials} />
-      <ul className="card-grid card-grid-3 testimonial-grid">
-        {testimonials.map(({ quote, name, role, placeholder }) => (
-          <li className="testimonial-card" key={name} data-reveal>
-            <figure>
-              <div className="testimonial-top">
-                <span className="testimonial-mark" aria-hidden="true"><Quote size={22} strokeWidth={1.75} /></span>
-                {placeholder && <PlaceholderTag>Awaiting testimonial</PlaceholderTag>}
-              </div>
-              <blockquote><p>{quote}</p></blockquote>
-              <figcaption>
-                <span className="testimonial-avatar" aria-hidden="true">{initials(name)}</span>
-                <span><strong>{name}</strong><small>{role}</small></span>
-              </figcaption>
-            </figure>
-          </li>
-        ))}
-      </ul>
+      <div className="quote-layout">
+        <figure className="quote-feature" data-reveal>
+          <span className="quote-mark" aria-hidden="true">“</span>
+          <blockquote key={active} className="quote-text" aria-live="polite"><p>{quote}</p></blockquote>
+          <figcaption><strong>{name}</strong><span>{role}</span></figcaption>
+        </figure>
+
+        {published.length > 1 && (
+          <ol className="quote-index" aria-label="Choose a testimonial" data-reveal>
+            {published.map((item, index) => (
+              <li key={item.name}>
+                <button type="button" aria-pressed={index === active} onClick={() => setActive(index)}>
+                  <span className="quote-index-num">{String(index + 1).padStart(2, '0')}</span>
+                  <span><strong>{item.name}</strong><small>{item.role}</small></span>
+                </button>
+              </li>
+            ))}
+          </ol>
+        )}
+      </div>
     </Section>
   )
 }

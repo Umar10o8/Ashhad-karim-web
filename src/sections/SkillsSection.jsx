@@ -9,7 +9,7 @@ import IconBadge from '../components/ui/IconBadge.jsx'
 // `number` overrides the section number when the section is reused on another page.
 function SkillsSection({ number }) {
   return (
-    <Section id="skills" tone="alt">
+    <Section id="skills" tone="alt" className="about-skills-section soft-mesh">
       <SectionHeader id="skills" {...sections.skills} number={number ?? sections.skills.number} />
       <div className="card-grid card-grid-2">
         {skills.map(({ group, icon, note, items, wide }) => (

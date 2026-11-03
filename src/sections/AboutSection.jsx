@@ -1,25 +1,34 @@
-import { Check } from 'lucide-react'
+import { Check, GraduationCap } from 'lucide-react'
 import { about } from '../data/content.js'
+import { aboutPage } from '../data/pages.js'
 import Section from '../components/layout/Section.jsx'
 import ChipList from '../components/ui/ChipList.jsx'
 import ResponsiveImage from '../components/ui/ResponsiveImage.jsx'
 
-// `number` overrides the section number when the section is reused on another page.
-// The About page uses the close portrait (about.portraitAlt).
+const { industries, industriesTitle, education, educationTitle } = aboutPage.glance
+
+// About page story: CV summary with industries and education, beside the office portrait and
+// core strengths. `number` overrides the section number when the section is reused.
 function AboutSection({ number = about.number }) {
-  const portrait = about.portraitAlt
+  const portrait = about.portrait
   return (
-    <Section id="about">
+    <Section id="about" className="about-page-section soft-mesh">
       <div className="about-grid">
         <div className="about-copy" data-reveal>
           <p className="section-label"><span>{number}</span><span>{about.label}</span></p>
           <h2 id="about-title">{about.title} <em>{about.emphasis}</em></h2>
-          <p className="about-lead">{about.lead}</p>
-          {about.paragraphs.map((text) => <p key={text}>{text}</p>)}
-          <div className="about-tools">
-            <span aria-hidden="true">Proficient in</span>
-            <ChipList items={about.tools} tone="accent" label="Proficient in" />
-          </div>
+          <p className="about-lead" data-reveal>{about.lead}</p>
+          {about.paragraphs.map((text) => <p key={text} data-reveal>{text}</p>)}
+          <dl className="about-facts">
+            <div>
+              <dt>{industriesTitle}</dt>
+              <dd><ChipList items={industries} tone="accent" label={industriesTitle} /></dd>
+            </div>
+            <div>
+              <dt>{educationTitle}</dt>
+              <dd className="about-education"><GraduationCap size={18} aria-hidden="true" />{education}</dd>
+            </div>
+          </dl>
         </div>
 
         <div className="about-aside">

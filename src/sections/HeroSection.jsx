@@ -1,27 +1,36 @@
-import { useState } from 'react'
-import { ArrowUpRight, ArrowDown } from 'lucide-react'
+import { useRef, useState } from 'react'
+import { ArrowUpRight } from 'lucide-react'
 import { hero } from '../data/content.js'
 import Button from '../components/ui/Button.jsx'
 import PlaceholderTag from '../components/ui/PlaceholderTag.jsx'
+import useVisitorCount from '../hooks/useVisitorCount.js'
+import useMagnetic from '../hooks/useMagnetic.js'
+import useParallax from '../hooks/useParallax.js'
 
-const pad = (n) => String(n).padStart(2, '0')
-
-// Full-bleed photo with rotating headline slides. The progress bar's CSS animation drives the
-// rotation (onAnimationEnd advances the slide), so pausing on hover/focus is just
-// `animation-play-state`, and reduced motion, which disables animations, stops auto-advance.
+// Full-bleed photo with rotating headline slides. A hidden timer element's CSS animation drives
+// the rotation (onAnimationEnd advances the slide; `key` restarts it per slide), so pausing on
+// hover/focus is just `animation-play-state`, and reduced motion, which disables animations,
+// stops auto-advance.
 function HeroSection() {
   const [active, setActive] = useState(0)
   const [paused, setPaused] = useState(false)
+  const backgroundRef = useRef(null)
+  const softwareRef = useRef(null)
+  const ctaRef = useRef(null)
+  const visitorCount = useVisitorCount()
   const { slides, image } = hero
   const next = () => setActive((index) => (index + 1) % slides.length)
+  useParallax(backgroundRef, 22)
+  useMagnetic(softwareRef, 0.12, 'li')
+  useMagnetic(ctaRef, 0.18)
 
   return (
     <section className="hero surface-dark" id="home" aria-labelledby="home-title">
-      <div className="hero-bg" aria-hidden="true">
+      <div className="hero-bg" aria-hidden="true" ref={backgroundRef}>
         <img
           src={image.src}
           srcSet={image.srcSet}
-          sizes="100vw"
+          sizes="(min-width: 801px) 62vw, 100vw"
           width={image.width}
           height={image.height}
           alt=""
@@ -32,8 +41,9 @@ function HeroSection() {
       {image.placeholder && <PlaceholderTag>Representative industry image</PlaceholderTag>}
 
       <div className="page-wrap hero-inner">
+        <p className="eyebrow hero-eyebrow"><span aria-hidden="true" />{hero.eyebrow}</p>
+
         <div className="hero-copy">
-          <p className="eyebrow hero-eyebrow"><span aria-hidden="true" />{hero.eyebrow}</p>
           <h1 id="home-title" className="sr-only">{hero.name}: {hero.focus}</h1>
 
           <div
@@ -45,58 +55,38 @@ function HeroSection() {
             onFocus={() => setPaused(true)}
             onBlur={() => setPaused(false)}
           >
-            {slides.map(({ stat, title, emphasis }, index) => (
-              <p
+            {slides.map(({ stat, title, emphasis, software }, index) => (
+              <div
                 key={title}
                 className={`hero-slide${index === active ? ' is-active' : ''}`}
                 aria-hidden={index !== active}
                 aria-roledescription="slide"
               >
-                {stat && <span className="hero-stat">{stat}</span>}
-                <span className="hero-slide-title">{title} <em>{emphasis}</em></span>
-              </p>
+                <p className="hero-slide-text">
+                  {stat && <span className="hero-stat">{stat}</span>}
+                  <span className="hero-slide-title">{title} <em>{emphasis}</em></span>
+                </p>
+                {software && (
+                  <ul className="hero-software" aria-label="Software" ref={softwareRef}>
+                    {hero.software.map(({ mono, name, color, bg }) => (
+                      <li key={name} title={name} style={{ '--sw-color': color, '--sw-bg': bg }}>
+                        <span aria-hidden="true">{mono}</span>
+                        <span className="sr-only">{name}</span>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </div>
             ))}
+            <span key={active} className={`hero-timer${paused ? ' is-paused' : ''}`} onAnimationEnd={next} aria-hidden="true" />
           </div>
-
-          <p className="hero-intro">{hero.intro}</p>
-          <div className="hero-actions">
-            <Button href={hero.primaryCta.href} icon={ArrowUpRight}>{hero.primaryCta.label}</Button>
-            <Button href={hero.secondaryCta.href} variant="ghost" icon={ArrowDown}>{hero.secondaryCta.label}</Button>
-          </div>
+          <Button href={hero.cta.href} icon={ArrowUpRight} className="hero-cta" ref={ctaRef}>{hero.cta.label}</Button>
         </div>
 
         <div className="hero-foot">
-          {/* On desktop the arrow sits inside a spinning ring of text */}
-          <a className="hero-scroll" href={hero.scrollCue.href}>
-            <span className="hero-badge" aria-hidden="true">
-              <svg viewBox="0 0 120 120">
-                <defs><path id="hero-badge-path" d="M60 60m-46 0a46 46 0 1 1 92 0a46 46 0 1 1-92 0" /></defs>
-                <text><textPath href="#hero-badge-path" textLength="286" lengthAdjust="spacing">Production · Pre-production · Coordination · </textPath></text>
-              </svg>
-              <ArrowDown size={18} />
-            </span>
-            {hero.scrollCue.label}
-          </a>
-          <div className="hero-counter">
-            <span className="hero-counter-num" aria-hidden="true">{pad(active + 1)}</span>
-            <div className="hero-track">
-              {slides.map(({ title }, index) => (
-                <button
-                  key={title}
-                  type="button"
-                  className={`hero-segment${index < active ? ' is-done' : ''}`}
-                  aria-label={`Show highlight ${index + 1} of ${slides.length}`}
-                  aria-current={index === active}
-                  onClick={() => setActive(index)}
-                >
-                  {index === active && (
-                    <span className={`hero-progress${paused ? ' is-paused' : ''}`} onAnimationEnd={next} />
-                  )}
-                </button>
-              ))}
-            </div>
-            <span className="hero-counter-num" aria-hidden="true">{pad(slides.length)}</span>
-          </div>
+          {visitorCount !== null && (
+            <p className="hero-visitors">Site visitors: <strong>{visitorCount.toLocaleString('en')}</strong></p>
+          )}
         </div>
       </div>
     </section>

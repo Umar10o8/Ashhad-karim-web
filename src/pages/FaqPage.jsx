@@ -12,7 +12,7 @@ function FaqPage() {
   return (
     <>
       <PageHero id="faq-page" {...hero} />
-      <section className="section faq-section" aria-label="Questions and answers">
+      <section className="section faq-section soft-mesh" aria-label="Questions and answers">
         <div className="page-wrap faq-layout">
           <nav className="faq-toc" aria-label="FAQ topics">
             <p className="section-label"><span>{String(faq.length).padStart(2, '0')}</span><span>Topics</span></p>
