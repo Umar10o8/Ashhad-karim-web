@@ -12,6 +12,13 @@ import thinkingLg from '../assets/images/portrait/portrait-thinking-848.webp'
 import nightSm from '../assets/images/portrait/riyadh-night-street-1000.webp'
 import nightLg from '../assets/images/portrait/riyadh-night-street-2000.webp'
 import avatar from '../assets/images/portrait/contact-avatar-480.webp'
+import psLogo from '../assets/images/software/photoshop.svg'
+import aiLogo from '../assets/images/software/illustrator.svg'
+import idLogo from '../assets/images/software/indesign.svg'
+import aeLogo from '../assets/images/software/after-effects.svg'
+import maxLogo from '../assets/images/software/3ds-max.svg'
+import cadLogo from '../assets/images/software/autocad.svg'
+import suLogo from '../assets/images/software/sketchup.svg'
 import { localImage } from '../utils/images.js'
 import { url } from '../utils/paths.js'
 
@@ -29,15 +36,15 @@ export const hero = {
     { stat: '20+', title: 'Years in print &', emphasis: 'production.', software: true },
     { title: 'Bringing creative concepts to', emphasis: 'production.' },
   ],
-  // Badge colours echo each program's own branding; the badges are typographic, not logos.
+  // Each program's app icon (`logo`). `mono` and the colours remain for tints and fallbacks.
   software: [
-    { mono: 'Ps', name: 'Adobe Photoshop', color: '#31A8FF', bg: '#001E36' },
-    { mono: 'Ai', name: 'Adobe Illustrator', color: '#FF9A00', bg: '#330000' },
-    { mono: 'Id', name: 'Adobe InDesign', color: '#FF3366', bg: '#49021F' },
-    { mono: 'Ae', name: 'Adobe After Effects', color: '#9999FF', bg: '#00005B' },
-    { mono: '3ds', name: '3ds Max', color: '#FFFFFF', bg: '#1F9DB5' },
-    { mono: 'CAD', name: 'AutoCAD', color: '#FFFFFF', bg: '#E51050' },
-    { mono: 'Su', name: 'SketchUp', color: '#FFFFFF', bg: '#005F9E' },
+    { mono: 'Ps', name: 'Adobe Photoshop', color: '#31A8FF', bg: '#001E36', logo: psLogo },
+    { mono: 'Ai', name: 'Adobe Illustrator', color: '#FF9A00', bg: '#330000', logo: aiLogo },
+    { mono: 'Id', name: 'Adobe InDesign', color: '#FF3366', bg: '#49021F', logo: idLogo },
+    { mono: 'Ae', name: 'Adobe After Effects', color: '#9999FF', bg: '#00005B', logo: aeLogo },
+    { mono: '3ds', name: '3ds Max', color: '#FFFFFF', bg: '#1F9DB5', logo: maxLogo },
+    { mono: 'CAD', name: 'AutoCAD', color: '#FFFFFF', bg: '#E51050', logo: cadLogo },
+    { mono: 'Su', name: 'SketchUp', color: '#FFFFFF', bg: '#005F9E', logo: suLogo },
   ],
   cta: { label: 'Get in touch', href: url('contact/') },
   scrollCue: { label: 'Scroll down', href: '#about' },

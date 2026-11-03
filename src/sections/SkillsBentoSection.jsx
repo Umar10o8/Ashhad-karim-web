@@ -6,9 +6,9 @@ import SectionHeader from '../components/layout/SectionHeader.jsx'
 import Section from '../components/layout/Section.jsx'
 import usePointerGlow from '../hooks/usePointerGlow.js'
 
-// Letter-chips and accent tints come from the hero's software badges, so both places match
-// (typographic chips, not product logos).
-const chips = Object.fromEntries(hero.software.map(({ name, mono, color, bg }) => [name, { mono, color, bg }]))
+// App icons and accent tints come from the hero's software list, so both places match.
+// Programs whose accent is white take their brand background colour for the glow.
+const chips = Object.fromEntries(hero.software.map(({ name, logo, color, bg }) => [name, { logo, color: color === '#FFFFFF' ? bg : color }]))
 
 const software = skills.filter(({ wide }) => !wide).flatMap(({ group, items }) => items.map((name) => ({ name, group })))
 
@@ -23,11 +23,11 @@ function SkillsBentoSection() {
       <SectionHeader id="skills" {...sections.skills} {...home.skillsHeading} />
       <ul className="skills-grid" ref={gridRef}>
         {software.map(({ name, group }) => {
-          const { mono, color, bg } = chips[name] ?? { mono: name.slice(0, 2), color: '#C90050', bg: '#8E123F' }
+          const { logo, color } = chips[name] ?? {}
           return (
-            <li className="skills-card gcard gcard-glass" key={name} style={{ '--sw-color': color, '--sw-ink': bg }} data-reveal>
-              <span className="skills-letter gcard-object" aria-hidden="true">{mono}</span>
-              <span className="skills-chip" aria-hidden="true">{mono}</span>
+            <li className="skills-card gcard gcard-glass" key={name} style={{ '--sw-color': color ?? '#C90050' }} data-reveal>
+              {logo && <img className="skills-mark gcard-object" src={logo} alt="" loading="lazy" decoding="async" />}
+              {logo && <span className="skills-chip"><img src={logo} alt="" width="40" height="40" loading="lazy" decoding="async" /></span>}
               <ArrowUpRight className="skills-arrow" size={18} aria-hidden="true" />
               <strong>{name.replace('Adobe ', '')}</strong>
               <small>{group}</small>

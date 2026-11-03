@@ -81,10 +81,9 @@ function HeroSection() {
                 </p>
                 {software && (
                   <ul className="hero-software" aria-label="Software" ref={softwareRef}>
-                    {hero.software.map(({ mono, name, color }) => (
-                      <li key={name} title={name} style={{ '--sw-color': color }}>
-                        <span aria-hidden="true">{mono}</span>
-                        <span className="sr-only">{name}</span>
+                    {hero.software.map(({ name, logo }) => (
+                      <li key={name} title={name}>
+                        <img src={logo} alt={name} width="32" height="32" decoding="async" />
                       </li>
                     ))}
                   </ul>
