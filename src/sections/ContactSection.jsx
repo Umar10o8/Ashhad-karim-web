@@ -2,44 +2,64 @@ import { useRef } from 'react'
 import { ArrowUpRight, Mail, Phone } from 'lucide-react'
 import contact, { mailtoHref, telHref } from '../config/contact.js'
 import { hero, home, sections } from '../data/content.js'
-import Section from '../components/layout/Section.jsx'
 import ContactMethod from '../components/contact/ContactMethod.jsx'
+import ContactForm from '../components/contact/ContactForm.jsx'
+import PillTag from '../components/ui/PillTag.jsx'
 import PlaceholderTag from '../components/ui/PlaceholderTag.jsx'
 import useMagnetic from '../hooks/useMagnetic.js'
 
 const copy = sections.contact
 
-// Closing call to action: an oversized heading with a magnetic round button to the contact
-// page, and the direct email and phone links beneath.
+// Restarts the ripple from the point that was pressed.
+const ripple = (event) => {
+  const button = event.currentTarget
+  const rect = button.getBoundingClientRect()
+  button.style.setProperty('--rx', `${event.clientX - rect.left}px`)
+  button.style.setProperty('--ry', `${event.clientY - rect.top}px`)
+  button.classList.remove('is-rippling')
+  void button.offsetWidth
+  button.classList.add('is-rippling')
+}
+
+// Closing call to action: a crimson-to-plum panel over the blurred street photo with the
+// heading, the magnetic round button, and direct email and phone links, and the message form
+// on a frosted card overlapping the panel's edge.
 function ContactSection() {
   const buttonRef = useRef(null)
   useMagnetic(buttonRef, 0.35)
 
   return (
-    <Section id="contact" tone="dark" className="contact-section">
+    <section id="contact" className="section contact-section" aria-labelledby="contact-title">
       <div className="contact-bg" aria-hidden="true">
         <img src={copy.background.src} srcSet={copy.background.srcSet} sizes="100vw" width={copy.background.width} height={copy.background.height} alt="" loading="lazy" decoding="async" />
       </div>
-      <div className="contact-hero" data-reveal>
-        <p className="section-label"><span>{copy.number}</span><span>{copy.label}</span></p>
-        <h2 id="contact-title" className="contact-title">{copy.title} <em>{copy.emphasis}</em></h2>
-        <a className="magnet-button" href={home.contactLink.href} ref={buttonRef}>
-          <span>{home.contactLink.label}<ArrowUpRight size={22} aria-hidden="true" /></span>
-        </a>
-      </div>
 
-      <div className="contact-row" data-reveal>
-        <div className="contact-person">
-          <img src={copy.avatar.src} width={copy.avatar.width} height={copy.avatar.height} alt={copy.avatar.alt} loading="lazy" decoding="async" />
-          <span><strong>{hero.name}</strong>{copy.intro}</span>
+      <div className="page-wrap contact-layout">
+        <div className="contact-panel-main surface-dark" data-reveal>
+          <PillTag number={copy.number} className="pill-dark section-label">{copy.label}</PillTag>
+          <h2 id="contact-title" className="contact-title">{copy.title} <em>{copy.emphasis}</em></h2>
+          <a className="magnet-button" href={home.contactLink.href} ref={buttonRef} onPointerDown={ripple}>
+            <span>{home.contactLink.label}<ArrowUpRight size={22} aria-hidden="true" /></span>
+          </a>
+
+          <div className="contact-row">
+            <div className="contact-person">
+              <img src={copy.avatar.src} width={copy.avatar.width} height={copy.avatar.height} alt={copy.avatar.alt} loading="lazy" decoding="async" />
+              <span><strong>{hero.name}</strong>{copy.intro}</span>
+            </div>
+            <address className="contact-cards">
+              <ContactMethod icon={Mail} label="Email" value={contact.email} href={mailtoHref} />
+              <ContactMethod icon={Phone} label="Phone" value={contact.phone} href={telHref} />
+              {!contact.confirmed && <PlaceholderTag>Contact details awaiting confirmation</PlaceholderTag>}
+            </address>
+          </div>
         </div>
-        <address className="contact-cards">
-          <ContactMethod icon={Mail} label="Email" value={contact.email} href={mailtoHref} />
-          <ContactMethod icon={Phone} label="Phone" value={contact.phone} href={telHref} />
-          {!contact.confirmed && <PlaceholderTag>Contact details awaiting confirmation</PlaceholderTag>}
-        </address>
+
+        <div className="contact-form-card contact-form-float" data-reveal>
+          <ContactForm headingLevel="h3" />
+        </div>
       </div>
-    </Section>
+    </section>
   )
 }
 

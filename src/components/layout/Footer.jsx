@@ -7,11 +7,15 @@ import { url } from '../../utils/paths.js'
 
 const currentYear = new Date().getFullYear()
 
-// Dark closing band: a short positioning line, the menu, and direct contact links, with the
-// name set across the full width as the sign-off.
+// Dark plum closing band behind a soft wave: a short positioning line, the menu, and direct
+// contact links, with the name set across the full width as an outline that fills with
+// crimson as it scrolls in (or on hover).
 function Footer() {
   return (
     <footer className="footer surface-dark">
+      <svg className="footer-wave" viewBox="0 0 1440 64" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+        <path d="M0 0v28c240 34 480 40 720 22S1200 0 1440 18V0z" />
+      </svg>
       <div className="page-wrap footer-grid">
         <div className="footer-intro">
           <p className="footer-descriptor">{footer.descriptor}</p>
@@ -30,7 +34,7 @@ function Footer() {
       </div>
 
       <div className="page-wrap">
-        <p className="footer-word" aria-hidden="true" data-reveal>Ashhad Karim<span>.</span></p>
+        <p className="footer-word" aria-hidden="true" data-reveal data-text="Ashhad Karim.">Ashhad Karim<span>.</span></p>
       </div>
 
       <div className="page-wrap footer-bottom">

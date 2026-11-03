@@ -7,6 +7,7 @@ import FaqPage from './pages/FaqPage.jsx'
 import ContactPage from './pages/ContactPage.jsx'
 import CursorFollower from './components/home/CursorFollower.jsx'
 import useReveal from './hooks/useReveal.js'
+import useSmoothScroll from './hooks/useSmoothScroll.js'
 import { currentPage } from './utils/paths.js'
 
 const pages = { home: HomePage, about: AboutPage, faq: FaqPage, contact: ContactPage }
@@ -15,6 +16,7 @@ const pages = { home: HomePage, about: AboutPage, faq: FaqPage, contact: Contact
 // re-render the page sections.
 function App() {
   useReveal()
+  useSmoothScroll()
   const Page = pages[currentPage] ?? HomePage
 
   return (

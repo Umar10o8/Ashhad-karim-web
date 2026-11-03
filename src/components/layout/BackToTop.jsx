@@ -1,11 +1,9 @@
 import { ArrowUp } from 'lucide-react'
 import { useEffect, useState } from 'react'
 import useScrollThreshold from '../../hooks/useScrollThreshold.js'
+import { smoothScrollTo } from '../../hooks/useSmoothScroll.js'
 
-const scrollToTop = () => {
-  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-  window.scrollTo({ top: 0, behavior: reduceMotion ? 'auto' : 'smooth' })
-}
+const scrollToTop = () => smoothScrollTo(0)
 
 // Always mounted so it can fade in and out; hidden from keyboard and screen readers while invisible.
 function BackToTop() {
@@ -17,7 +15,7 @@ function BackToTop() {
     if (!footer || !('IntersectionObserver' in window)) return
 
     const observer = new IntersectionObserver(([entry]) => setFooterVisible(entry.isIntersecting), {
-      rootMargin: '0px 0px -8% 0px',
+      rootMargin: '0px 0px 64px 0px',
     })
     observer.observe(footer)
     return () => observer.disconnect()
