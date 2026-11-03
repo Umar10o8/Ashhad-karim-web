@@ -1,44 +1,68 @@
+import { Building2, Clock, Globe2, Layers, Users } from 'lucide-react'
 import { sections } from '../data/content.js'
 import { aboutPage } from '../data/pages.js'
 import achievements from '../data/achievements.js'
 import SectionHeader from '../components/layout/SectionHeader.jsx'
 import Section from '../components/layout/Section.jsx'
+import GlassCard from '../components/ui/GlassCard.jsx'
 import CountUp from '../components/home/CountUp.jsx'
+import { CmykDots, CropCorner, Skyline } from '../components/decor/PrintObjects.jsx'
 
 const copy = sections.achievements
 const [lead, ...stats] = aboutPage.glance.stats
+// One line icon per supporting figure, in the order of aboutPage.glance.stats:
+// companies, countries, team, projects at once, years leading.
+const statIcons = [Building2, Globe2, Users, Layers, Clock]
+const deliverTints = ['blush', 'peach', 'lilac', 'peach', 'lilac', 'blush']
 
-// Achievements, used on the home and About pages. One focal figure ("20+ years") at display
-// size, the supporting CV figures as a ruled list beside it, then the achievements as a
-// numbered editorial list. Figures count up on arrival. `number` overrides the section number.
+// Achievements, used on the home and About pages. A bento: the "20+ years" figure on a dark
+// focal card, the supporting CV figures as glass rows on a crimson card, then the achievements
+// as tinted glass cards. Figures count up on arrival. `number` overrides the section number.
 function ImpactSection({ number = copy.number }) {
   return (
-    <Section id="achievements" tone="alt" className="impact-section">
+    <Section id="achievements" panel="blush" backdrop={0} className="impact-section">
       <SectionHeader id="achievements" {...copy} number={number} />
 
-      <div className="impact-grid">
-        <div className="impact-lead" data-reveal>
+      <div className="impact-bento">
+        <div className="impact-focus" data-reveal>
+          <span className="impact-glow" aria-hidden="true" />
+          <Skyline className="impact-skyline" />
           <CountUp value={lead.value} className="impact-lead-value" />
           <p>{lead.label}</p>
         </div>
-        <ul className="impact-stats">
-          {stats.map(({ value, label }) => (
-            <li key={label} className="glass-surface" data-reveal>
-              <CountUp value={value} className="impact-value" />
-              <span>{label}</span>
-            </li>
-          ))}
-        </ul>
+
+        <div className="impact-figures" data-reveal>
+          <ul className="impact-stats">
+            {stats.map(({ value, label }, index) => {
+              const Icon = statIcons[index % statIcons.length]
+              return (
+                <li key={label}>
+                  <span className="impact-ghost" aria-hidden="true">{value}</span>
+                  <Icon className="impact-icon" size={22} strokeWidth={1.5} aria-hidden="true" />
+                  <CountUp value={value} className="impact-value" />
+                  <span className="impact-label">{label}</span>
+                </li>
+              )
+            })}
+          </ul>
+        </div>
       </div>
 
-      <h3 className="impact-list-title" data-reveal>{copy.listTitle}</h3>
+      <h3 className="impact-list-title pill" data-reveal><span className="pill-dot" aria-hidden="true" />{copy.listTitle}</h3>
       <ol className="impact-list">
         {achievements.map(({ icon: Icon, text }, index) => (
-          <li key={text} className="glass-surface" data-reveal>
+          <GlassCard
+            as="li"
+            key={text}
+            tint={deliverTints[index % deliverTints.length]}
+            object={index % 2 ? CropCorner : CmykDots}
+            className="impact-card"
+            data-reveal
+          >
             <span className="impact-num">{String(index + 1).padStart(2, '0')}</span>
             <p>{text}</p>
-            <Icon size={22} aria-hidden="true" />
-          </li>
+            <Icon className="impact-card-icon" size={22} aria-hidden="true" />
+          </GlassCard>
         ))}
       </ol>
     </Section>
