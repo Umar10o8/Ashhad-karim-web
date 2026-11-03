@@ -1,43 +1,25 @@
 import { useEffect, useRef, useState } from 'react'
-import { ArrowLeft, ArrowRight, MapPin } from 'lucide-react'
+import { ArrowLeft, ArrowRight, ArrowUpRight, MapPin } from 'lucide-react'
 import { home, sections } from '../data/content.js'
 import experience from '../data/experience.js'
 import SectionHeader from '../components/layout/SectionHeader.jsx'
+import SectionBackdrop from '../components/decor/SectionBackdrop.jsx'
+import GlassCard from '../components/ui/GlassCard.jsx'
+import { BillboardFrame, BuildingWrap, CropTarget, ExhibitionStand, RulerLines, SwatchFan } from '../components/decor/PrintObjects.jsx'
 import usePointerGlow from '../hooks/usePointerGlow.js'
 
-const artworkTransforms = [0, 18, -12, 24, -20, 12, -8, 20]
+const tints = ['blush', 'peach', 'lilac']
+// One print/OOH object per card, cycling in this order.
+const timelineObjects = [BuildingWrap, BillboardFrame, ExhibitionStand, CropTarget, SwatchFan, RulerLines]
+const total = String(experience.length).padStart(2, '0')
 
-function TimelineArtwork({ index }) {
-  const transform = artworkTransforms[index % artworkTransforms.length]
-  const dotCount = 3 + (index % 4)
-
-  return (
-    <svg className="rail-art" viewBox="0 0 220 160" fill="none" aria-hidden="true">
-      <g transform={`rotate(${transform} 110 80)`}>
-        <rect x="34" y="24" width="152" height="108" rx="8" stroke="currentColor" strokeWidth="2" />
-        <rect x="48" y="38" width="124" height="80" rx="3" stroke="currentColor" strokeWidth="1.5" />
-        <path d={`M48 ${58 + index % 5 * 5}h124M${74 + index % 6 * 8} 38v80`} stroke="currentColor" strokeWidth="1.5" />
-        {Array.from({ length: dotCount }, (_, dot) => (
-          <circle
-            key={dot}
-            cx={63 + dot * (15 + index % 3)}
-            cy={83 + ((dot + index) % 3) * 8}
-            r={3 + (index % 3)}
-            fill="currentColor"
-          />
-        ))}
-        <path d={`M${42 + index % 5 * 5} 18v12M28 34h12m140-16v12m2 4h12M42 130v12m-14-10h12m146-2v12m2-2h12`} stroke="currentColor" strokeWidth="2" />
-      </g>
-    </svg>
-  )
-}
-
-// Home-page experience: a horizontal scroll-snap timeline that works with touch, trackpads,
-// keyboard scrolling, and the previous/next controls.
+// Home-page experience: a horizontal scroll-snap timeline. Works with touch swipes, trackpads,
+// mouse drag, the arrow keys (while the track has focus), and the previous/next buttons.
 function ExperienceRailSection() {
   const trackRef = useRef(null)
   const [progress, setProgress] = useState(0)
-  usePointerGlow(trackRef, '.rail-card', { tilt: true })
+  const [position, setPosition] = useState(1)
+  usePointerGlow(trackRef, '.exp-card', { tilt: true })
 
   useEffect(() => {
     const track = trackRef.current
@@ -45,61 +27,123 @@ function ExperienceRailSection() {
     const measure = () => {
       const maximum = track.scrollWidth - track.clientWidth
       const next = maximum > 0 ? track.scrollLeft / maximum : 1
-      track.style.setProperty('--track-progress', next.toFixed(4))
+      const card = track.querySelector('.exp-card')
+      const gap = Number.parseFloat(getComputedStyle(track).columnGap) || 0
+      const step = (card?.getBoundingClientRect().width ?? 1) + gap
+      // At the end of the track the last card may never reach the left edge, so count it in.
+      const index = next >= .995 ? experience.length : Math.min(experience.length, Math.round(track.scrollLeft / step) + 1)
+      track.closest('.exp-section')?.style.setProperty('--track-progress', next.toFixed(4))
       setProgress((value) => Math.abs(value - next) < .002 ? value : next)
+      setPosition(index)
     }
     const observer = new ResizeObserver(measure)
     observer.observe(track)
     track.addEventListener('scroll', measure, { passive: true })
     measure()
+
+    // Mouse drag. Touch and pen keep native swiping; snapping is paused while dragging.
+    let drag = null
+    const down = (event) => {
+      if (event.pointerType !== 'mouse' || event.button !== 0) return
+      drag = { x: event.clientX, left: track.scrollLeft, moved: false }
+    }
+    const move = (event) => {
+      if (!drag) return
+      const dx = event.clientX - drag.x
+      if (!drag.moved && Math.abs(dx) < 4) return
+      if (!drag.moved) {
+        drag.moved = true
+        track.classList.add('is-dragging')
+        track.setPointerCapture(event.pointerId)
+      }
+      track.scrollLeft = drag.left - dx
+    }
+    const up = () => {
+      if (!drag) return
+      drag = null
+      track.classList.remove('is-dragging')
+    }
+    track.addEventListener('pointerdown', down)
+    track.addEventListener('pointermove', move)
+    track.addEventListener('pointerup', up)
+    track.addEventListener('pointercancel', up)
     return () => {
       observer.disconnect()
       track.removeEventListener('scroll', measure)
+      track.removeEventListener('pointerdown', down)
+      track.removeEventListener('pointermove', move)
+      track.removeEventListener('pointerup', up)
+      track.removeEventListener('pointercancel', up)
     }
   }, [])
 
   const scrollTrack = (direction) => {
     const track = trackRef.current
     if (!track) return
-    const card = track.querySelector('.rail-card')
+    const card = track.querySelector('.exp-card')
     const gap = Number.parseFloat(getComputedStyle(track).columnGap) || 0
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
     track.scrollBy({ left: direction * ((card?.getBoundingClientRect().width || track.clientWidth) + gap), behavior: reduceMotion ? 'auto' : 'smooth' })
   }
 
+  const handleKey = (event) => {
+    if (event.key !== 'ArrowLeft' && event.key !== 'ArrowRight') return
+    event.preventDefault()
+    scrollTrack(event.key === 'ArrowRight' ? 1 : -1)
+  }
+
   return (
-    <section id="experience" className="section rail-section" aria-labelledby="experience-title">
-      <div className="rail-sticky">
+    <section id="experience" className="section section-paneled exp-section" aria-labelledby="experience-title">
+      <SectionBackdrop variant={1} />
+      <div className="panel panel-lilac">
         <div className="page-wrap">
           <SectionHeader id="experience" {...sections.experience} />
         </div>
-        <ol className="rail-track" ref={trackRef} tabIndex={0} aria-label="Career timeline, newest first">
-          {experience.map(({ role, company, location, start, end, current }, index) => (
-            <li className={`rail-card glass-card${current ? ' is-current' : ''}`} key={`${company}-${start}`}>
-              <TimelineArtwork index={index} />
-              <span className="rail-years" aria-hidden="true">{start}<span>–{end === 'Present' ? 'Now' : end.slice(2)}</span></span>
-              <div className="rail-body">
-                <p className="sr-only">{start} – {end}</p>
-                <h3>{role}</h3>
-                <p className="rail-company">{company}</p>
-                <p className="rail-meta"><MapPin size={14} aria-hidden="true" /> {location}</p>
-              </div>
-              <span className="rail-step" aria-hidden="true">{String(experience.length - index).padStart(2, '0')}</span>
-            </li>
-          ))}
-        </ol>
-        <div className="page-wrap rail-foot">
-          <span className="rail-hint">{home.experienceHint} <ArrowRight size={16} /></span>
-          <button type="button" className="rail-control" onClick={() => scrollTrack(-1)} disabled={progress <= .001} aria-label="Previous experience">
-            <ArrowLeft size={17} aria-hidden="true" />
-          </button>
-          <span className="rail-bar" role="progressbar" aria-label="Experience timeline progress" aria-valuemin={0} aria-valuemax={100} aria-valuenow={Math.round(progress * 100)}>
+        <div className="exp-rail">
+          <ol className="exp-track" ref={trackRef} tabIndex={0} onKeyDown={handleKey} aria-label="Career timeline, newest first">
+            {experience.map(({ role, company, location, start, end, current }, index) => (
+              <GlassCard
+                as="li"
+                key={`${company}-${start}`}
+                tint={current ? 'current' : tints[index % tints.length]}
+                object={timelineObjects[index % timelineObjects.length]}
+                className={`exp-card${current ? ' is-current' : ''}`}
+              >
+                <div className="exp-top">
+                  <span className="exp-years" aria-hidden="true">{start}<span>–{end === 'Present' ? 'Now' : end.slice(2)}</span></span>
+                  <span className="exp-index" aria-hidden="true">
+                    {String(experience.length - index).padStart(2, '0')}
+                    <ArrowUpRight size={13} />
+                  </span>
+                </div>
+                <div className="exp-body">
+                  <p className="sr-only">{start} – {end}</p>
+                  <h3>{role}</h3>
+                  <p className="exp-company">{company}</p>
+                </div>
+                <p className="exp-meta">
+                  {current && <span className="exp-live" aria-hidden="true" />}
+                  <MapPin size={14} aria-hidden="true" /> {location}
+                </p>
+              </GlassCard>
+            ))}
+          </ol>
+        </div>
+        <div className="page-wrap exp-foot">
+          <span className="exp-hint">{home.experienceHint} <ArrowRight size={16} aria-hidden="true" /></span>
+          <span className="exp-count" aria-hidden="true"><strong>{String(position).padStart(2, '0')}</strong> / {total}</span>
+          <span className="exp-bar" role="progressbar" aria-label="Experience timeline progress" aria-valuemin={0} aria-valuemax={100} aria-valuenow={Math.round(progress * 100)}>
             <span />
           </span>
-          <button type="button" className="rail-control" onClick={() => scrollTrack(1)} disabled={progress >= .999} aria-label="Next experience">
-            <ArrowRight size={17} aria-hidden="true" />
-          </button>
-          <span className="rail-range">{experience.at(-1).start} — Now</span>
+          <span className="exp-range">{experience.at(-1).start} — Now</span>
+          <div className="exp-controls">
+            <button type="button" className="exp-control" onClick={() => scrollTrack(-1)} disabled={progress <= .001} aria-label="Previous experience">
+              <ArrowLeft size={18} aria-hidden="true" />
+            </button>
+            <button type="button" className="exp-control" onClick={() => scrollTrack(1)} disabled={progress >= .999} aria-label="Next experience">
+              <ArrowRight size={18} aria-hidden="true" />
+            </button>
+          </div>
         </div>
       </div>
     </section>
