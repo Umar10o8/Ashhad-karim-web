@@ -46,7 +46,7 @@ export const hero = {
     { mono: 'CAD', name: 'AutoCAD', color: '#FFFFFF', bg: '#E51050', logo: cadLogo },
     { mono: 'Su', name: 'SketchUp', color: '#FFFFFF', bg: '#005F9E', logo: suLogo },
   ],
-  cta: { label: 'Get in touch', href: url('contact/') },
+  cta: { label: 'Let’s Talk', href: url('contact/') },
   scrollCue: { label: 'Scroll down', href: '#about' },
   // Supplied photo of Ashhad. Set `placeholder: true` (and a `credit`) only for stock images.
   image: {
@@ -100,7 +100,7 @@ export const home = {
   // Home-page headings; the About page keeps the fuller versions in `sections`.
   skillsHeading: { title: 'Software', emphasis: 'skills.', intro: undefined },
   experienceHint: 'Keep scrolling',
-  contactLink: { label: 'Get in touch', href: url('contact/') },
+  contactLink: { label: 'Let’s Talk', href: url('contact/') },
 }
 
 export const sections = {
@@ -144,7 +144,7 @@ export const sections = {
     title: 'Let’s discuss your next',
     emphasis: 'opportunity.',
     intro: 'Open to conversations about production, pre-production, and project coordination roles and projects.',
-    cta: 'Send an Email',
+    cta: 'Let’s Talk',
     avatar: { ...localImage(avatar, 480, 480), alt: '' },
     // Decorative background photo behind the home contact section
     background: responsiveAsset({ small: nightSm, large: nightLg, width: 2000, height: 1116, smallWidth: 1000 }),

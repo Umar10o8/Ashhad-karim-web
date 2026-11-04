@@ -12,7 +12,7 @@ import { currentPage, url } from '../../utils/paths.js'
 // Scroll-spy runs on the home page for every section that has a menu link.
 const observedIds = currentPage === 'home' ? navigation.map(({ id }) => id) : []
 
-// Floating glass pill: wordmark, links, and the Contact Me button. It tightens and frosts a
+// Floating glass pill: wordmark, links, and the Let’s Talk button. It tightens and frosts a
 // little more once the page scrolls; the reading-progress line runs along its lower edge.
 function Header() {
   const [menuOpen, setMenuOpen] = useState(false)
@@ -58,7 +58,7 @@ function Header() {
         </button>
         <nav id="main-nav" className={`nav-links${menuOpen ? ' is-open' : ''}`} aria-label="Main navigation">
           <NavLinks activeId={activeId} onNavigate={closeMenu} linkClassName="nav-link" />
-          <Button href={url('contact/')} className="nav-cta" icon={ArrowUpRight} onClick={closeMenu}>Contact Me</Button>
+          <Button href={url('contact/')} className="nav-cta" icon={ArrowUpRight} onClick={closeMenu}>Let’s Talk</Button>
         </nav>
         <ScrollProgress />
       </div>

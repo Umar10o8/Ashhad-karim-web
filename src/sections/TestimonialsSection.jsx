@@ -4,15 +4,40 @@ import testimonials from '../data/testimonials.js'
 import Section from '../components/layout/Section.jsx'
 import SectionHeader from '../components/layout/SectionHeader.jsx'
 
-// Only real, approved quotes are shown. While every entry in testimonials.js is still a
-// placeholder the section renders nothing, so the live site never shows invented praise.
+// Only real, approved quotes are shown. Until at least one entry has `placeholder: false`,
+// the section lists the people Ashhad has worked with (names and roles only) and attributes
+// no words to anyone.
 const published = testimonials.filter(({ placeholder }) => !placeholder)
+
+const rosterHeader = {
+  number: sections.testimonials.number,
+  label: 'Worked with',
+  title: 'Trusted by',
+  emphasis: 'industry leaders.',
+}
+
+function Roster() {
+  return (
+    <Section id="testimonials" className="testimonials-section">
+      <SectionHeader id="testimonials" {...rosterHeader} />
+      <ul className="roster-grid" data-reveal>
+        {testimonials.map(({ name, role }, index) => (
+          <li key={name} className="roster-card">
+            <span className="roster-num">{String(index + 1).padStart(2, '0')}</span>
+            <strong>{name}</strong>
+            <span>{role}</span>
+          </li>
+        ))}
+      </ul>
+    </Section>
+  )
+}
 
 // Editorial quote layout: one large quote at a time, with the speakers listed as a numbered
 // index that switches between them.
 function TestimonialsSection() {
   const [active, setActive] = useState(0)
-  if (!published.length) return null
+  if (!published.length) return <Roster />
   const { quote, name, role } = published[active]
 
   return (

@@ -31,7 +31,7 @@ export const aboutPage = {
   cta: {
     title: 'Have a project or role in mind?',
     text: 'Get in touch to talk about production, pre-production, or project coordination.',
-    primary: 'Contact me',
+    primary: 'Let’s Talk',
     secondary: 'Read the FAQ',
   },
 }
@@ -51,7 +51,7 @@ export const faqPage = {
   cta: {
     title: 'Didn’t find your answer?',
     text: 'Send me a message and ask directly.',
-    primary: 'Contact me',
+    primary: 'Let’s Talk',
   },
 }
 
