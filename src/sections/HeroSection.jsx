@@ -1,5 +1,5 @@
 import { useRef, useState } from 'react'
-import { ArrowDown, ArrowRight } from 'lucide-react'
+import { ArrowRight } from 'lucide-react'
 import { hero } from '../data/content.js'
 import { aboutPage } from '../data/pages.js'
 import Button from '../components/ui/Button.jsx'
@@ -11,9 +11,6 @@ import useParallax from '../hooks/useParallax.js'
 // Floating glass notes over the photo, taken from the CV figures: 20+ years and 4 countries.
 const [yearsStat, , countriesStat] = aboutPage.glance.stats
 const miniCards = [yearsStat, countriesStat]
-
-// Repeated around the rotating badge.
-const badgeText = `${hero.scrollCue.label} • `.repeat(3)
 
 // Full-bleed photo with rotating headline slides. A hidden timer element's CSS animation drives
 // the rotation (onAnimationEnd advances the slide; `key` restarts it per slide), so pausing on
@@ -52,7 +49,6 @@ function HeroSection() {
       {image.placeholder && <PlaceholderTag>Representative industry image</PlaceholderTag>}
 
       <div className="page-wrap hero-inner">
-        <p className="pill pill-dark hero-eyebrow"><span className="pill-dot" aria-hidden="true" />{hero.eyebrow}</p>
 
         <div className="hero-copy">
           <h1 id="home-title" className="sr-only">{hero.name}: {hero.focus}</h1>
@@ -66,7 +62,7 @@ function HeroSection() {
             onFocus={() => setPaused(true)}
             onBlur={() => setPaused(false)}
           >
-            {slides.map(({ stat, title, emphasis, software }, index) => (
+            {slides.map(({ stat, title, emphasis, software, countries }, index) => (
               <div
                 key={title}
                 className={`hero-slide${index === active ? ' is-active' : ''}`}
@@ -88,6 +84,11 @@ function HeroSection() {
                     ))}
                   </ul>
                 )}
+                {countries && (
+                  <ul className="hero-countries" aria-label="Countries">
+                    {countries.map((country) => <li key={country}>{country}</li>)}
+                  </ul>
+                )}
               </div>
             ))}
             <span key={active} className={`hero-timer${paused ? ' is-paused' : ''}`} onAnimationEnd={next} aria-hidden="true" />
@@ -101,13 +102,6 @@ function HeroSection() {
           {visitorCount !== null && (
             <p className="pill pill-dark hero-visitors">Site visitors: <strong>{visitorCount.toLocaleString('en')}</strong></p>
           )}
-          <a className="hero-badge" href={hero.scrollCue.href} aria-label={hero.scrollCue.label}>
-            <svg viewBox="0 0 120 120" aria-hidden="true" focusable="false">
-              <defs><path id="hero-badge-path" d="M60 60m-44 0a44 44 0 1 1 88 0a44 44 0 1 1-88 0" /></defs>
-              <text><textPath href="#hero-badge-path" textLength="270">{badgeText}</textPath></text>
-            </svg>
-            <ArrowDown size={20} aria-hidden="true" />
-          </a>
         </div>
       </div>
 

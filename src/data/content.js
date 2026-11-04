@@ -11,7 +11,7 @@ import thinkingSm from '../assets/images/portrait/portrait-thinking-600.webp'
 import thinkingLg from '../assets/images/portrait/portrait-thinking-848.webp'
 import nightSm from '../assets/images/portrait/riyadh-night-street-1000.webp'
 import nightLg from '../assets/images/portrait/riyadh-night-street-2000.webp'
-import avatar from '../assets/images/portrait/contact-avatar-480.webp'
+import studioLogo from '../assets/images/karim-creative-studio.svg'
 import psLogo from '../assets/images/software/photoshop.svg'
 import aiLogo from '../assets/images/software/illustrator.svg'
 import idLogo from '../assets/images/software/indesign.svg'
@@ -19,11 +19,9 @@ import aeLogo from '../assets/images/software/after-effects.svg'
 import maxLogo from '../assets/images/software/3ds-max.svg'
 import cadLogo from '../assets/images/software/autocad.svg'
 import suLogo from '../assets/images/software/sketchup.svg'
-import { localImage } from '../utils/images.js'
 import { url } from '../utils/paths.js'
 
 export const hero = {
-  eyebrow: 'Out of Home Advertising',
   title: 'Bringing Creative Concepts to',
   emphasis: 'Production.',
   intro: 'I’m Ashhad Karim, a production and pre-production professional experienced in exhibition stands, large-format printing, branding, and fabrication. I coordinate creative and production teams to help turn concepts into high-quality physical outcomes.',
@@ -31,10 +29,16 @@ export const hero = {
   focus: 'Production, Pre-Production & Project Coordination',
   focusAreas: ['Exhibition stands', 'Large-format printing', 'Branding', 'Fabrication'],
   // Rotating headlines. "20+" comes from the CV timeline in experience.js (first role 2004).
-  // `software` shows the program badges under that slide.
+  // `software` shows the program badges under that slide; `countries` lists the countries.
   slides: [
     { stat: '20+', title: 'Years in print &', emphasis: 'production.', software: true },
     { title: 'Bringing creative concepts to', emphasis: 'production.' },
+    {
+      stat: '7',
+      title: 'Companies across',
+      emphasis: 'four countries.',
+      countries: ['Pakistan', 'Oman', 'United Arab Emirates', 'Kingdom of Saudi Arabia'],
+    },
   ],
   // Each program's app icon (`logo`). `mono` and the colours remain for tints and fallbacks.
   software: [
@@ -47,7 +51,6 @@ export const hero = {
     { mono: 'Su', name: 'SketchUp', color: '#FFFFFF', bg: '#005F9E', logo: suLogo },
   ],
   cta: { label: 'Let’s Talk', href: url('contact/') },
-  scrollCue: { label: 'Scroll down', href: '#about' },
   // Supplied photo of Ashhad. Set `placeholder: true` (and a `credit`) only for stock images.
   image: {
     ...responsiveAsset({ small: heroSm, large: heroLg, width: 1418, height: 791 }),
@@ -145,7 +148,7 @@ export const sections = {
     emphasis: 'opportunity.',
     intro: 'Open to conversations about production, pre-production, and project coordination roles and projects.',
     cta: 'Let’s Talk',
-    avatar: { ...localImage(avatar, 480, 480), alt: '' },
+    logo: { src: studioLogo, width: 602, height: 216, alt: 'Karim Creative Studio' },
     // Decorative background photo behind the home contact section
     background: responsiveAsset({ small: nightSm, large: nightLg, width: 2000, height: 1116, smallWidth: 1000 }),
   },

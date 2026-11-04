@@ -13,6 +13,10 @@ const contact = {
     { value: '+92 301 3329228', region: 'PAK', href: '+923013329228' },
   ],
   emailSubject: 'Enquiry via your portfolio',
+  // Google Apps Script web app URL that saves form messages to a Google Sheet (see
+  // google-apps-script/README.md). Leave '' to keep the old behaviour: the form opens the
+  // visitor's email app instead.
+  formEndpoint: 'https://script.google.com/macros/s/AKfycbyI3m4X0rWwEI8yifMmwIleB5rIDCsq9hexTNrIrAnPxXrFCseGWV_wsBwNRN5XPWd5/exec',
 }
 
 export const mailtoHref = `mailto:${contact.email}?subject=${encodeURIComponent(contact.emailSubject)}`

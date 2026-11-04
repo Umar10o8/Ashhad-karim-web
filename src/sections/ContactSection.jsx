@@ -22,7 +22,7 @@ const ripple = (event) => {
 }
 
 // Closing call to action: a crimson-to-plum panel over the blurred street photo with the
-// heading, the magnetic round button, and direct email and phone links, and the message form
+// heading, the magnetic pill button, and direct email and phone links, and the message form
 // on a frosted card overlapping the panel's edge.
 function ContactSection() {
   const buttonRef = useRef(null)
@@ -36,15 +36,18 @@ function ContactSection() {
 
       <div className="page-wrap contact-layout">
         <div className="contact-panel-main surface-dark" data-reveal>
-          <PillTag number={copy.number} className="pill-dark section-label">{copy.label}</PillTag>
+          <PillTag className="pill-dark section-label">{copy.label}</PillTag>
           <h2 id="contact-title" className="contact-title">{copy.title} <em>{copy.emphasis}</em></h2>
           <a className="magnet-button" href={home.contactLink.href} ref={buttonRef} onPointerDown={ripple}>
-            <span>{home.contactLink.label}<ArrowUpRight size={22} aria-hidden="true" /></span>
+            <span className="magnet-label">{home.contactLink.label}</span>
+            <span className="magnet-core"><ArrowUpRight size={24} aria-hidden="true" /></span>
           </a>
 
           <div className="contact-row">
             <div className="contact-person">
-              <img src={copy.avatar.src} width={copy.avatar.width} height={copy.avatar.height} alt={copy.avatar.alt} loading="lazy" decoding="async" />
+              <span className="contact-person-logo">
+                <img src={copy.logo.src} width={copy.logo.width} height={copy.logo.height} alt={copy.logo.alt} loading="lazy" decoding="async" />
+              </span>
               <span><strong>{hero.name}</strong>{copy.intro}</span>
             </div>
             <address className="contact-cards">
