@@ -40,7 +40,7 @@ function FaqPage() {
           </div>
         </div>
       </section>
-      <CtaBand title={cta.title} text={cta.text} primary={{ label: cta.primary, href: url('contact/') }} />
+      <CtaBand title={cta.title} text={cta.text} primary={{ label: cta.primary, href: url('contact/#contact-form') }} />
     </>
   )
 }

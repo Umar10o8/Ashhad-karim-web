@@ -7,14 +7,26 @@ let lenis = null
 const headerOffset = () => -((document.querySelector('.site-header')?.getBoundingClientRect().bottom ?? 0) + 16)
 
 // Scrolls to an element or a y position, through Lenis when it is running.
-export function smoothScrollTo(target) {
-  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+// `instant` jumps without animating (used when a page opens on a #hash link).
+export function smoothScrollTo(target, { instant = false } = {}) {
+  const immediate = instant || window.matchMedia('(prefers-reduced-motion: reduce)').matches
   if (lenis) {
-    lenis.scrollTo(target, { offset: typeof target === 'number' ? 0 : headerOffset(), immediate: reduceMotion })
+    lenis.scrollTo(target, { offset: typeof target === 'number' ? 0 : headerOffset(), immediate, force: true })
     return
   }
-  if (typeof target === 'number') window.scrollTo({ top: target, behavior: reduceMotion ? 'auto' : 'smooth' })
-  else target.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth' })
+  if (typeof target === 'number') window.scrollTo({ top: target, behavior: immediate ? 'auto' : 'smooth' })
+  else target.scrollIntoView({ behavior: immediate ? 'auto' : 'smooth' })
+}
+
+// The pages render on the client, so the browser cannot jump to a #hash target on load (the
+// element does not exist yet). Do it once the page has rendered, e.g. "Let's Talk" opening
+// /contact/#contact-form straight at the form.
+function jumpToInitialHash() {
+  if (!window.location.hash) return
+  const element = document.getElementById(decodeURIComponent(window.location.hash.slice(1)))
+  if (!element) return
+  if ('scrollRestoration' in history) history.scrollRestoration = 'manual'
+  requestAnimationFrame(() => smoothScrollTo(element, { instant: true }))
 }
 
 // Eased page scrolling on wheel and trackpad (touch keeps native scrolling). In-page anchor
@@ -22,7 +34,10 @@ export function smoothScrollTo(target) {
 // it can take it (e.g. the skip link's <main tabindex="-1">). Off for reduced motion.
 function useSmoothScroll() {
   useEffect(() => {
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      jumpToInitialHash()
+      return
+    }
 
     lenis = new Lenis({ lerp: .1, autoRaf: true })
 
@@ -41,6 +56,7 @@ function useSmoothScroll() {
     }
 
     document.addEventListener('click', handleClick)
+    jumpToInitialHash()
     return () => {
       document.removeEventListener('click', handleClick)
       lenis?.destroy()

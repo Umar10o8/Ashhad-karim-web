@@ -22,7 +22,7 @@ function AboutPage() {
       <CtaBand
         title={cta.title}
         text={cta.text}
-        primary={{ label: cta.primary, href: url('contact/') }}
+        primary={{ label: cta.primary, href: url('contact/#contact-form') }}
         secondary={{ label: cta.secondary, href: url('faq/') }}
       />
     </>

@@ -13,7 +13,7 @@ function ContactPage() {
   return (
     <>
       <PageHero id="contact-page" {...hero} />
-      <section className="section contact-page soft-mesh" aria-labelledby="contact-form-title">
+      <section id="contact-form" className="section contact-page soft-mesh" aria-labelledby="contact-form-title">
         <div className="page-wrap contact-page-grid">
           <div className="contact-form-card" data-reveal>
             <ContactForm />

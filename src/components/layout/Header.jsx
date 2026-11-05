@@ -58,7 +58,7 @@ function Header() {
         </button>
         <nav id="main-nav" className={`nav-links${menuOpen ? ' is-open' : ''}`} aria-label="Main navigation">
           <NavLinks activeId={activeId} onNavigate={closeMenu} linkClassName="nav-link" />
-          <Button href={url('contact/')} className="nav-cta" icon={ArrowUpRight} onClick={closeMenu}>Let’s Talk</Button>
+          <Button href={url('contact/#contact-form')} className="nav-cta" icon={ArrowUpRight} onClick={closeMenu}>Let’s Talk</Button>
         </nav>
         <ScrollProgress />
       </div>

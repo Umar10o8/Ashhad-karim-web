@@ -1,4 +1,5 @@
 import { useEffect } from 'react'
+import { subscribeScroll, whileVisible } from '../utils/scrollFrame.js'
 
 // Writes the element's scroll progress (0–1) to its `--p` custom property, once per frame.
 //   'view'  0 when the top enters the lower part of the viewport, 1 as the element leaves upward
@@ -14,25 +15,25 @@ function useScrollProgress(ref, mode = 'view') {
       return
     }
 
-    let frame = 0
-    const update = () => {
-      frame = 0
-      const rect = element.getBoundingClientRect()
-      const viewport = window.innerHeight
-      const progress = mode === 'pin'
-        ? -rect.top / Math.max(1, rect.height - viewport)
-        : (viewport * 0.85 - rect.top) / (rect.height + viewport * 0.35)
-      element.style.setProperty('--p', Math.min(1, Math.max(0, progress)).toFixed(4))
+    let last = ''
+    const subscriber = {
+      read: () => element.getBoundingClientRect(),
+      write: (rect) => {
+        const viewport = window.innerHeight
+        const progress = mode === 'pin'
+          ? -rect.top / Math.max(1, rect.height - viewport)
+          : (viewport * 0.85 - rect.top) / (rect.height + viewport * 0.35)
+        const value = Math.min(1, Math.max(0, progress)).toFixed(3)
+        if (value === last) return
+        last = value
+        element.style.setProperty('--p', value)
+      },
     }
-    const request = () => { if (!frame) frame = requestAnimationFrame(update) }
-
-    update()
-    window.addEventListener('scroll', request, { passive: true })
-    window.addEventListener('resize', request)
+    const stopVisible = whileVisible(element, subscriber)
+    const unsubscribe = subscribeScroll(subscriber)
     return () => {
-      cancelAnimationFrame(frame)
-      window.removeEventListener('scroll', request)
-      window.removeEventListener('resize', request)
+      stopVisible()
+      unsubscribe()
     }
   }, [ref, mode])
 }

@@ -50,7 +50,7 @@ export const hero = {
     { mono: 'CAD', name: 'AutoCAD', color: '#FFFFFF', bg: '#E51050', logo: cadLogo },
     { mono: 'Su', name: 'SketchUp', color: '#FFFFFF', bg: '#005F9E', logo: suLogo },
   ],
-  cta: { label: 'Let’s Talk', href: url('contact/') },
+  cta: { label: 'Let’s Talk', href: url('contact/#contact-form') },
   // Supplied photo of Ashhad. Set `placeholder: true` (and a `credit`) only for stock images.
   image: {
     ...responsiveAsset({ small: heroSm, large: heroLg, width: 1418, height: 791 }),
@@ -103,7 +103,7 @@ export const home = {
   // Home-page headings; the About page keeps the fuller versions in `sections`.
   skillsHeading: { title: 'Software', emphasis: 'skills.', intro: undefined },
   experienceHint: 'Keep scrolling',
-  contactLink: { label: 'Let’s Talk', href: url('contact/') },
+  contactLink: { label: 'Let’s Talk', href: url('contact/#contact-form') },
 }
 
 export const sections = {

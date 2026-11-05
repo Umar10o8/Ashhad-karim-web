@@ -1,16 +1,15 @@
 import { useEffect, useState } from 'react'
+import { subscribeScroll } from '../utils/scrollFrame.js'
 
 // True once the page has scrolled past `threshold` pixels. Only re-renders the
 // calling component when the boolean flips, not on every scroll event.
 function useScrollThreshold(threshold) {
   const [passed, setPassed] = useState(false)
 
-  useEffect(() => {
-    const update = () => setPassed(window.scrollY > threshold)
-    update()
-    window.addEventListener('scroll', update, { passive: true })
-    return () => window.removeEventListener('scroll', update)
-  }, [threshold])
+  useEffect(() => subscribeScroll({
+    read: () => window.scrollY > threshold,
+    write: setPassed,
+  }), [threshold])
 
   return passed
 }
