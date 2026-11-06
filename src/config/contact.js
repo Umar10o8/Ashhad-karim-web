@@ -12,6 +12,7 @@ const contact = {
     { value: '+966 50 6334858', region: 'KSA', href: '+966506334858' },
     { value: '+92 301 3329228', region: 'PAK', href: '+923013329228' },
   ],
+  linkedin: 'https://www.linkedin.com/in/ashhad-karim-aa41a771/',
   emailSubject: 'Enquiry via your portfolio',
   // Google Apps Script web app URL that saves form messages to a Google Sheet (see
   // google-apps-script/README.md). Leave '' to keep the old behaviour: the form opens the

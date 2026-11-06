@@ -9,7 +9,7 @@ const breakable = (value) => {
 
 // One contact route (email, phone) as a large card. With a single `value` and `href` the whole
 // card is the link; with `links` (several numbers) each line is its own link.
-function ContactMethod({ icon, label, value, href, links }) {
+function ContactMethod({ icon, label, value, href, links, ...rest }) {
   if (links) {
     return (
       <div className="contact-card">
@@ -24,7 +24,7 @@ function ContactMethod({ icon, label, value, href, links }) {
   }
 
   return (
-    <a className="contact-card" href={href}>
+    <a className="contact-card" href={href} {...rest}>
       <IconBadge icon={icon} tone="solid" />
       <span><small>{label}</small>{breakable(value)}</span>
       <ArrowUpRight size={18} className="contact-arrow" aria-hidden="true" />

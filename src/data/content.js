@@ -152,7 +152,3 @@ export const sections = {
     background: responsiveAsset({ small: nightSm, large: nightLg, width: 2000, height: 1116, smallWidth: 1000 }),
   },
 }
-
-export const footer = {
-  descriptor: 'Out-of-home advertising, print, and production, from first concept to final installation.',
-}

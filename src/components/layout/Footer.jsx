@@ -1,13 +1,12 @@
 import { ArrowUp, ArrowUpRight } from 'lucide-react'
 import contact, { mailtoHref, phoneLinks } from '../../config/contact.js'
-import { footer } from '../../data/content.js'
 import NavLinks from '../navigation/NavLinks.jsx'
 import PlaceholderTag from '../ui/PlaceholderTag.jsx'
 import { url } from '../../utils/paths.js'
 
 const currentYear = new Date().getFullYear()
 
-// Dark plum closing band behind a soft wave: a short positioning line, the menu, and direct
+// Dark plum closing band behind a soft wave: a Let's Talk link, the menu, and direct
 // contact links, with the name set across the full width as an outline that fills with
 // crimson as it scrolls in (or on hover).
 function Footer() {
@@ -18,7 +17,6 @@ function Footer() {
       </svg>
       <div className="page-wrap footer-grid">
         <div className="footer-intro">
-          <p className="footer-descriptor">{footer.descriptor}</p>
           <a className="footer-cta" href={url('contact/#contact-form')}>Let’s Talk <ArrowUpRight size={18} aria-hidden="true" /></a>
         </div>
         <nav className="footer-col" aria-label="Footer navigation">
@@ -29,6 +27,7 @@ function Footer() {
           <p className="footer-heading">Contact</p>
           <a className="footer-link" href={mailtoHref}>{contact.email}</a>
           {phoneLinks.map(({ value, href }) => <a key={href} className="footer-link" href={href}>{value}</a>)}
+          <a className="footer-link" href={contact.linkedin} target="_blank" rel="noopener noreferrer">LinkedIn</a>
           {!contact.confirmed && <PlaceholderTag>Awaiting confirmation</PlaceholderTag>}
         </address>
       </div>

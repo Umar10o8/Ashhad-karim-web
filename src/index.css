@@ -449,7 +449,7 @@ h1 em, h2 em { color: var(--accent); font-family: var(--font-display); font-styl
 .hero-cta { min-height: 56px; padding: 0 28px; font-size: 16px; }
 
 /* The visitor pill breaks out of the page-wrap to sit near the hero's right edge (100cqw = hero width). */
-.hero-foot { margin-right: calc((100% - 100cqw) / 2 + max(16px, var(--page-gutter) / 2)); display: flex; flex-wrap: wrap; align-items: center; justify-content: flex-end; gap: var(--space-4); animation: enter-fade var(--duration-slow) ease 600ms both; }
+.hero-foot { margin-right: calc((100% - 100cqw) / 2 + 12px); display: flex; flex-wrap: wrap; align-items: center; justify-content: flex-end; gap: var(--space-4); animation: enter-fade var(--duration-slow) ease 600ms both; }
 .hero-visitors { margin: 0; font-size: 12px; letter-spacing: .08em; text-transform: uppercase; }
 .hero-visitors strong { margin-left: 4px; color: var(--color-magenta-200); font-variant-numeric: tabular-nums; }
 /* Rotating text badge in a glass circle */
@@ -653,7 +653,6 @@ h1 em, h2 em { color: var(--accent); font-family: var(--font-display); font-styl
 .footer { position: relative; padding-top: clamp(96px, 10vw, 150px); overflow: hidden; background: radial-gradient(50% 60% at 88% 10%, rgb(142 18 63 / .32), transparent 70%), radial-gradient(40% 50% at 0% 100%, rgb(201 0 80 / .14), transparent 70%), linear-gradient(180deg, var(--color-plum-900), var(--color-plum-950)); }
 .footer-wave { position: absolute; top: -1px; right: 0; left: 0; width: 100%; height: clamp(36px, 4.4vw, 64px); fill: #FAF1EC; }
 .footer-grid { display: grid; grid-template-columns: minmax(0, 6fr) minmax(0, 3fr) minmax(0, 3fr); gap: clamp(32px, 5vw, 80px); padding-bottom: var(--space-8); }
-.footer-descriptor { max-width: 460px; margin: 0 0 var(--space-5); font-family: var(--font-display); font-size: clamp(24px, 2.4vw, 32px); font-weight: 500; letter-spacing: -.02em; line-height: 1.2; }
 .footer-cta { display: inline-flex; align-items: center; gap: var(--space-2); padding-bottom: 4px; color: var(--color-magenta-200); background: linear-gradient(currentColor 0 0) left bottom / 100% 1.5px no-repeat; font-weight: 700; transition: color var(--duration-fast); }
 .footer-cta svg { transition: transform var(--duration-base) var(--ease-out); }
 .footer-cta:hover { color: var(--color-white); }

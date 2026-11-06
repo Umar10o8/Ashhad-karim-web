@@ -4,6 +4,7 @@ import contact, { mailtoHref, phoneLinks } from '../config/contact.js'
 import { hero, home, sections } from '../data/content.js'
 import ContactMethod from '../components/contact/ContactMethod.jsx'
 import ContactForm from '../components/contact/ContactForm.jsx'
+import LinkedInIcon from '../components/ui/LinkedInIcon.jsx'
 import PillTag from '../components/ui/PillTag.jsx'
 import PlaceholderTag from '../components/ui/PlaceholderTag.jsx'
 import useMagnetic from '../hooks/useMagnetic.js'
@@ -53,6 +54,7 @@ function ContactSection() {
             <address className="contact-cards">
               <ContactMethod icon={Mail} label="Email" value={contact.email} href={mailtoHref} />
               <ContactMethod icon={Phone} label="Phone" links={phoneLinks} />
+              <ContactMethod icon={LinkedInIcon} label="LinkedIn" value="Ashhad Karim" href={contact.linkedin} target="_blank" rel="noopener noreferrer" />
               {!contact.confirmed && <PlaceholderTag>Contact details awaiting confirmation</PlaceholderTag>}
             </address>
           </div>
