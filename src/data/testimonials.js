@@ -5,13 +5,13 @@ const testimonials = [
   {
     quote: 'Ashhad Karim is a highly dedicated professional who understands requirements well and always focuses on delivering quality work. It has been a great experience working with him.',
     name: 'Jad Khory',
-    role: 'CEO, Printworks',
+    role: 'CEO, Print Works & Fabrication',
     placeholder: false,
   },
   {
     quote: 'Working with Ashhad has been a positive experience. His creative thinking, professionalism, and ability to understand project needs make him a valuable person to work with.',
     name: 'Farrukh Khan',
-    role: 'CEO, Brand Options',
+    role: 'CEO, Brand Options Advertising',
     placeholder: false,
   },
   {
@@ -29,13 +29,13 @@ const testimonials = [
   {
     quote: 'Ashhad has a great understanding of his work and brings a positive attitude to every project. His dedication and consistency make collaboration easy and productive.',
     name: 'Tariq Mian',
-    role: 'CEO, Image Graphic',
+    role: 'CEO, Image Graphic Solutions Pvt Ltd',
     placeholder: false,
   },
   {
     quote: 'It has been a pleasure working with Ashhad Karim. His commitment, problem-solving skills, and professional attitude truly stand out. Wishing him continued success!',
     name: 'Wajahat Ali Khan',
-    role: 'CEO, Link Advertising',
+    role: 'CEO, Link Advertising Agency',
     placeholder: false,
   },
 ]

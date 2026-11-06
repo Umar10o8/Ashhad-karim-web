@@ -12,16 +12,13 @@ export const aboutPage = {
     intro: 'Two decades of preparing artwork for print, designing exhibition stands, and coordinating the teams that take a project from approved design to installation.',
   },
   glance: {
-    // Figures from the CV plus the current THE.TEAM role (experience.js): first role 2004; seven
-    // employers in four countries; a five-member team at Print Works; up to five projects at once;
-    // four years leading the pre-production team. The first stat is shown largest.
+    // Figures supplied by Ashhad: first role 2004; seven employers in four countries; a team of
+    // 30; up to five projects at once. The first stat is shown largest.
     stats: [
-      { value: '20+', label: 'Years in print and production, since 2004' },
-      { value: '7', label: 'Companies across advertising, print, and production' },
-      { value: '4', label: 'Countries: Saudi Arabia, UAE, Oman, and Pakistan' },
-      { value: '5', label: 'Designers in the team I led at Print Works' },
+      { value: '20+', label: 'Years in print & production' },
+      { value: '7', label: 'Companies across 4 countries' },
+      { value: '30', label: 'Team members I lead' },
       { value: '5', label: 'Projects or tasks managed at the same time' },
-      { value: '4', label: 'Years leading the pre-production team' },
     ],
     industriesTitle: 'Industries',
     industries: ['Exhibitions', 'Conferences', 'Trade shows', 'Events', 'Brand activation'],

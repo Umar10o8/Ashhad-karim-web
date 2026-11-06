@@ -1,9 +1,9 @@
 // Source: supplied CV, plus the current role confirmed by Ashhad from his THE.TEAM signature
-// ("Production Manager, Production", from 2026).
+// (from 2026). The 2015–21 and 2021–26 Print Works & Fabrication roles are shown as one entry.
 
 const experience = [
   {
-    role: 'Production Manager',
+    role: 'Senior Print Production Manager',
     company: 'THE.TEAM',
     location: 'Saudi Arabia',
     start: '2026',
@@ -11,18 +11,11 @@ const experience = [
     current: true,
   },
   {
-    role: 'Pre-Production Supervisor',
-    company: 'Print Works & Fabrication',
-    location: 'UAE',
-    start: '2021',
-    end: '2026',
-  },
-  {
-    role: 'Pre-Press Studio Graphic Layout Artist cum 3D Designer (Exhibition Stands)',
+    role: 'Pre-Production Supervisor (2021–26); Pre-Press Studio Graphic Layout Artist cum 3D Designer, Exhibition Stands (2015–21)',
     company: 'Print Works & Fabrication',
     location: 'UAE',
     start: '2015',
-    end: '2021',
+    end: '2026',
   },
   {
     role: 'Pre-Press Studio Graphic Layout Artist cum 3D Designer (Exhibition Stands)',

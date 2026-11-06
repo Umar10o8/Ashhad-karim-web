@@ -2,7 +2,6 @@ import { useRef } from 'react'
 import { about, home } from '../data/content.js'
 import ResponsiveImage from '../components/ui/ResponsiveImage.jsx'
 import SectionBackdrop from '../components/decor/SectionBackdrop.jsx'
-import { wordmarkTitle } from '../components/navigation/Wordmark.jsx'
 import useParallax from '../hooks/useParallax.js'
 
 const copy = home.about
@@ -28,10 +27,7 @@ function HomeAboutSection() {
           <figure className="about-home-portrait" data-reveal="mask">
             <span className="about-home-frame" aria-hidden="true" />
             <ResponsiveImage image={about.portrait} alt={about.portrait.alt} ratio="4 / 5" sizes="(min-width: 801px) 40vw, 90vw" className="reveal-mask" />
-            <figcaption className="about-home-badge">
-              <strong>{copy.signature}</strong>
-              <span>{wordmarkTitle}</span>
-            </figcaption>
+            <figcaption className="about-home-since"><span>Since</span> 2004</figcaption>
           </figure>
         </div>
       </div>

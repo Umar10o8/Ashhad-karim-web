@@ -1,4 +1,4 @@
-import { Building2, Clock, Globe2, Layers, Users } from 'lucide-react'
+import { Building2, Layers, Users } from 'lucide-react'
 import { sections } from '../data/content.js'
 import { aboutPage } from '../data/pages.js'
 import achievements from '../data/achievements.js'
@@ -11,8 +11,8 @@ import { CmykDots, CropCorner, Skyline } from '../components/decor/PrintObjects.
 const copy = sections.achievements
 const [lead, ...stats] = aboutPage.glance.stats
 // One line icon per supporting figure, in the order of aboutPage.glance.stats:
-// companies, countries, team, projects at once, years leading.
-const statIcons = [Building2, Globe2, Users, Layers, Clock]
+// companies, team, projects at once.
+const statIcons = [Building2, Users, Layers]
 const deliverTints = ['blush', 'peach', 'lilac', 'peach', 'lilac', 'blush']
 
 // Achievements, used on the home and About pages. A bento: the "20+ years" figure on a dark

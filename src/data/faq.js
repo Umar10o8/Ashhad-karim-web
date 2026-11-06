@@ -6,7 +6,7 @@ const faq = [
     items: [
       {
         q: 'What do you do?',
-        a: 'I am Production Manager at THE.TEAM in Saudi Arabia, a role I started in 2026. Before that, from 2021 to 2026, I was Pre-Production Supervisor at Print Works & Fabrication in the UAE, taking design briefs from clients and client servicing executives, leading the design team, and coordinating approved designs through production, delivery, and installation.',
+        a: 'I am Senior Print Production Manager at THE.TEAM in Saudi Arabia, a role I started in 2026. Before that, from 2021 to 2026, I was Pre-Production Supervisor at Print Works & Fabrication in the UAE, taking design briefs from clients and client servicing executives, leading the design team, and coordinating approved designs through production, delivery, and installation.',
       },
       {
         q: 'Which industries do you work in?',
@@ -44,7 +44,7 @@ const faq = [
     items: [
       {
         q: 'Do you manage teams?',
-        a: 'Yes. I am Production Manager at THE.TEAM. At Print Works & Fabrication I led a five-member design team, delegating tasks and advising on every part of a project; I led the pre-production team there for four years and have trained and mentored junior staff.',
+        a: 'Yes. I am Senior Print Production Manager at THE.TEAM. At Print Works & Fabrication I led a five-member design team, delegating tasks and advising on every part of a project; I led the pre-production team there for four years and have trained and mentored junior staff.',
       },
       {
         q: 'How many projects can you handle at once?',

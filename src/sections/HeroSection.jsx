@@ -1,16 +1,11 @@
 import { useRef, useState } from 'react'
 import { ArrowRight } from 'lucide-react'
 import { hero } from '../data/content.js'
-import { aboutPage } from '../data/pages.js'
 import Button from '../components/ui/Button.jsx'
 import PlaceholderTag from '../components/ui/PlaceholderTag.jsx'
 import useVisitorCount from '../hooks/useVisitorCount.js'
 import useMagnetic from '../hooks/useMagnetic.js'
 import useParallax from '../hooks/useParallax.js'
-
-// Floating glass notes over the photo, taken from the CV figures: 20+ years and 4 countries.
-const [yearsStat, , countriesStat] = aboutPage.glance.stats
-const miniCards = [yearsStat, countriesStat]
 
 // Full-bleed photo with rotating headline slides. A hidden timer element's CSS animation drives
 // the rotation (onAnimationEnd advances the slide; `key` restarts it per slide), so pausing on
@@ -104,16 +99,6 @@ function HeroSection() {
           )}
         </div>
       </div>
-
-      {/* Decorative repeat of figures that the Achievements section states in full. */}
-      <ul className="hero-minis" aria-hidden="true">
-        {miniCards.map(({ value, label }, index) => (
-          <li key={label} className={`hero-mini hero-mini-${index + 1}`}>
-            <strong>{value}</strong>
-            <span>{label}</span>
-          </li>
-        ))}
-      </ul>
 
       <svg className="hero-curve" viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden="true" focusable="false">
         <path d="M0 80V40C240 6 480-4 720 18s480 54 720 22v40z" />

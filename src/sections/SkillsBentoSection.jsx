@@ -10,7 +10,7 @@ import usePointerGlow from '../hooks/usePointerGlow.js'
 // Programs whose accent is white take their brand background colour for the glow.
 const chips = Object.fromEntries(hero.software.map(({ name, logo, color, bg }) => [name, { logo, color: color === '#FFFFFF' ? bg : color }]))
 
-const software = skills.filter(({ wide }) => !wide).flatMap(({ group, items }) => items.map((name) => ({ name, group })))
+const software = skills.filter(({ wide }) => !wide).flatMap(({ items }) => items.map((name) => ({ name })))
 
 // Home-page skills: one card per program in an even bento (four Adobe programs, then three
 // design/3D programs). The equipment list stays on the About page.
@@ -22,7 +22,7 @@ function SkillsBentoSection() {
     <Section id="skills" panel="peach" backdrop={2} className="skills-section">
       <SectionHeader id="skills" {...sections.skills} {...home.skillsHeading} />
       <ul className="skills-grid" ref={gridRef}>
-        {software.map(({ name, group }) => {
+        {software.map(({ name }) => {
           const { logo, color } = chips[name] ?? {}
           return (
             <li className="skills-card gcard gcard-glass" key={name} style={{ '--sw-color': color ?? '#C90050' }} data-reveal>
@@ -30,7 +30,6 @@ function SkillsBentoSection() {
               {logo && <span className="skills-chip"><img src={logo} alt="" width="40" height="40" loading="lazy" decoding="async" /></span>}
               <ArrowUpRight className="skills-arrow" size={18} aria-hidden="true" />
               <strong>{name.replace('Adobe ', '')}</strong>
-              <small>{group}</small>
             </li>
           )
         })}

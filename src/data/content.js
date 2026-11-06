@@ -32,7 +32,7 @@ export const hero = {
   // `software` shows the program badges under that slide; `countries` lists the countries.
   slides: [
     { stat: '20+', title: 'Years in print &', emphasis: 'production.', software: true },
-    { title: 'Bringing creative concepts to', emphasis: 'production.' },
+    { title: 'Bringing creative concepts to', emphasis: 'final execution.' },
     {
       stat: '7',
       title: 'Companies across',
@@ -102,7 +102,6 @@ export const home = {
   },
   // Home-page headings; the About page keeps the fuller versions in `sections`.
   skillsHeading: { title: 'Software', emphasis: 'skills.', intro: undefined },
-  experienceHint: 'Keep scrolling',
   contactLink: { label: 'Let’s Talk', href: url('contact/#contact-form') },
 }
 
