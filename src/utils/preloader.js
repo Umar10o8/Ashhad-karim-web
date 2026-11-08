@@ -2,8 +2,8 @@
 // loaded and the web fonts are in, and it has been visible long enough for its intro to play.
 // It never waits longer than MAX_MS, so a slow photo cannot hold the site hostage.
 
-const MIN_MS = 1300
-const MAX_MS = 4000
+const MIN_MS = 2500
+const MAX_MS = 5000
 const CURTAIN_MS = 900
 
 const wait = (ms) => new Promise((resolve) => setTimeout(resolve, ms))
