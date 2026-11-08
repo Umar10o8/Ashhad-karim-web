@@ -3,7 +3,6 @@ import { ArrowRight } from 'lucide-react'
 import { hero } from '../data/content.js'
 import Button from '../components/ui/Button.jsx'
 import PlaceholderTag from '../components/ui/PlaceholderTag.jsx'
-import useVisitorCount from '../hooks/useVisitorCount.js'
 import useMagnetic from '../hooks/useMagnetic.js'
 import useParallax from '../hooks/useParallax.js'
 
@@ -17,7 +16,6 @@ function HeroSection() {
   const mediaRef = useRef(null)
   const softwareRef = useRef(null)
   const ctaRef = useRef(null)
-  const visitorCount = useVisitorCount()
   const { slides, image } = hero
   const next = () => setActive((index) => (index + 1) % slides.length)
   useParallax(mediaRef, 28)
@@ -47,6 +45,7 @@ function HeroSection() {
 
         <div className="hero-copy">
           <h1 id="home-title" className="sr-only">{hero.name}: {hero.focus}</h1>
+          <p className="hero-kicker"><span aria-hidden="true" />{hero.eyebrow}</p>
 
           <div
             className="hero-slides"
@@ -65,7 +64,7 @@ function HeroSection() {
                 aria-roledescription="slide"
               >
                 <p className="hero-slide-text">
-                  {stat && <span className="hero-line hero-stat"><span>{stat}</span></span>}
+                  {stat && <span className={`hero-line hero-stat${/\d/.test(stat) ? '' : ' hero-stat-word'}`}><span>{stat}</span></span>}
                   <span className="hero-line hero-slide-title"><span>{title}</span></span>
                   {' '}
                   <span className="hero-line hero-em-line"><em className="hero-em">{emphasis}</em></span>
@@ -91,12 +90,6 @@ function HeroSection() {
           <div className="hero-actions">
             <Button href={hero.cta.href} icon={ArrowRight} className="hero-cta btn-magnetic" ref={ctaRef}>{hero.cta.label}</Button>
           </div>
-        </div>
-
-        <div className="hero-foot">
-          {visitorCount !== null && (
-            <p className="pill pill-dark hero-visitors">Site visitors: <strong>{visitorCount.toLocaleString('en')}</strong></p>
-          )}
         </div>
       </div>
 

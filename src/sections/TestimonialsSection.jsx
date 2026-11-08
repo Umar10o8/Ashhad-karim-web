@@ -34,19 +34,28 @@ function Roster() {
 }
 
 // Editorial quote layout: one large quote at a time, with the speakers listed as a numbered
-// index that switches between them.
+// index that switches between them. Quotes advance on their own: a thin progress line under the
+// active name runs a CSS animation, and its animationend moves to the next quote. Hovering or
+// focusing the section pauses it, and reduced motion (animations off) stops auto-advance.
 function TestimonialsSection() {
   const [active, setActive] = useState(0)
+  const [paused, setPaused] = useState(false)
   if (!published.length) return <Roster />
   const { quote, name, role } = published[active]
+  const next = () => setActive((index) => (index + 1) % published.length)
+  const pause = () => setPaused(true)
+  const resume = (event) => {
+    if (event.type === 'blur' && event.currentTarget.contains(event.relatedTarget)) return
+    setPaused(false)
+  }
 
   return (
     <Section id="testimonials" className="testimonials-section">
       <SectionHeader id="testimonials" {...sections.testimonials} />
-      <div className="quote-layout">
+      <div className="quote-layout" onMouseEnter={pause} onMouseLeave={resume} onFocus={pause} onBlur={resume}>
         <figure className="quote-feature" data-reveal>
           <span className="quote-mark" aria-hidden="true">“</span>
-          <blockquote key={active} className="quote-text" aria-live="polite"><p>{quote}</p></blockquote>
+          <blockquote key={active} className="quote-text" aria-live={paused ? 'polite' : 'off'}><p>{quote}</p></blockquote>
           <figcaption><strong>{name}</strong><span>{role}</span></figcaption>
         </figure>
 
@@ -57,6 +66,9 @@ function TestimonialsSection() {
                 <button type="button" aria-pressed={index === active} onClick={() => setActive(index)}>
                   <span className="quote-index-num">{String(index + 1).padStart(2, '0')}</span>
                   <span><strong>{item.name}</strong><small>{item.role}</small></span>
+                  {index === active && (
+                    <span key={active} className={`quote-progress${paused ? ' is-paused' : ''}`} onAnimationEnd={next} aria-hidden="true" />
+                  )}
                 </button>
               </li>
             ))}

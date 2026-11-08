@@ -22,6 +22,7 @@ import suLogo from '../assets/images/software/sketchup.svg'
 import { url } from '../utils/paths.js'
 
 export const hero = {
+  eyebrow: 'Out of Home Advertising',
   title: 'Bringing Creative Concepts to',
   emphasis: 'Production.',
   intro: 'I’m Ashhad Karim, a production and pre-production professional experienced in exhibition stands, large-format printing, branding, and fabrication. I coordinate creative and production teams to help turn concepts into high-quality physical outcomes.',
@@ -32,7 +33,7 @@ export const hero = {
   // `software` shows the program badges under that slide; `countries` lists the countries.
   slides: [
     { stat: '20+', title: 'Years in print &', emphasis: 'production.', software: true },
-    { title: 'Bringing creative concepts to', emphasis: 'final execution.' },
+    { stat: 'Bringing', title: 'creative concepts to', emphasis: 'final execution.' },
     {
       stat: '7',
       title: 'Companies across',

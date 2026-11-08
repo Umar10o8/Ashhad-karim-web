@@ -37,7 +37,6 @@ function ImpactSection({ number = copy.number }) {
               const Icon = statIcons[index % statIcons.length]
               return (
                 <li key={label}>
-                  <span className="impact-ghost" aria-hidden="true">{value}</span>
                   <Icon className="impact-icon" size={22} strokeWidth={1.5} aria-hidden="true" />
                   <CountUp value={value} className="impact-value" />
                   <span className="impact-label">{label}</span>

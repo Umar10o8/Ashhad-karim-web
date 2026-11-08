@@ -28,7 +28,7 @@ function ContactPage() {
               <address className="contact-cards">
                 <ContactMethod icon={Mail} label="Email" value={contact.email} href={mailtoHref} />
                 <ContactMethod icon={Phone} label="Phone" links={phoneLinks} />
-                <ContactMethod icon={LinkedInIcon} label="LinkedIn" value="Ashhad Karim" href={contact.linkedin} target="_blank" rel="noopener noreferrer" />
+                <ContactMethod icon={LinkedInIcon} label="LinkedIn" value="Social media link" href={contact.linkedin} target="_blank" rel="noopener noreferrer" />
               </address>
               {!contact.confirmed && <PlaceholderTag>Contact details awaiting confirmation</PlaceholderTag>}
             </div>

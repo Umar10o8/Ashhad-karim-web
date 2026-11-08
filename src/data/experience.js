@@ -1,5 +1,6 @@
 // Source: supplied CV, plus the current role confirmed by Ashhad from his THE.TEAM signature
-// (from 2026). The 2015–21 and 2021–26 Print Works & Fabrication roles are shown as one entry.
+// (from 2026). The two Print Works & Fabrication roles share one entry; `stints` lists them
+// separately for the home-page card, and `role` sums them up for the About-page timeline.
 
 const experience = [
   {
@@ -11,15 +12,19 @@ const experience = [
     current: true,
   },
   {
-    role: 'Pre-Production Supervisor (2021–26); Pre-Press Studio Graphic Layout Artist cum 3D Designer, Exhibition Stands (2015–21)',
+    role: 'Pre-Production Supervisor (2021–26); Pre-Press Studio Graphic Layout Artist (2015–21)',
     company: 'Print Works & Fabrication',
     location: 'UAE',
     start: '2015',
     end: '2026',
+    stints: [
+      { start: '2021', end: '2026', role: 'Pre-Production Supervisor' },
+      { start: '2015', end: '2021', role: 'Pre-Press Studio Graphic Layout Artist' },
+    ],
   },
   {
-    role: 'Pre-Press Studio Graphic Layout Artist cum 3D Designer (Exhibition Stands)',
-    company: 'Brand Options Advertising LLC',
+    role: 'Pre-Press Studio Graphic Layout Artist',
+    company: 'Brand Options Advertising',
     location: 'UAE',
     start: '2013',
     end: '2015',
@@ -40,7 +45,7 @@ const experience = [
   },
   {
     role: 'Pre-Press Studio Graphic Layout Artist',
-    company: 'Image Graphic Solutions Pvt Ltd',
+    company: 'Image Graphic Solutions',
     location: 'Pakistan',
     start: '2006',
     end: '2009',

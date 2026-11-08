@@ -1,7 +1,7 @@
 import { useRef } from 'react'
 import { ArrowUpRight, Mail, Phone } from 'lucide-react'
 import contact, { mailtoHref, phoneLinks } from '../config/contact.js'
-import { hero, home, sections } from '../data/content.js'
+import { home, sections } from '../data/content.js'
 import ContactMethod from '../components/contact/ContactMethod.jsx'
 import ContactForm from '../components/contact/ContactForm.jsx'
 import LinkedInIcon from '../components/ui/LinkedInIcon.jsx'
@@ -49,12 +49,11 @@ function ContactSection() {
               <span className="contact-person-logo">
                 <img src={copy.logo.src} width={copy.logo.width} height={copy.logo.height} alt={copy.logo.alt} loading="lazy" decoding="async" />
               </span>
-              <span><strong>{hero.name}</strong>{copy.intro}</span>
             </div>
             <address className="contact-cards">
               <ContactMethod icon={Mail} label="Email" value={contact.email} href={mailtoHref} />
               <ContactMethod icon={Phone} label="Phone" links={phoneLinks} />
-              <ContactMethod icon={LinkedInIcon} label="LinkedIn" value="Ashhad Karim" href={contact.linkedin} target="_blank" rel="noopener noreferrer" />
+              <ContactMethod icon={LinkedInIcon} label="LinkedIn" value="Social media link" href={contact.linkedin} target="_blank" rel="noopener noreferrer" />
               {!contact.confirmed && <PlaceholderTag>Contact details awaiting confirmation</PlaceholderTag>}
             </address>
           </div>

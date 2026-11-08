@@ -9,6 +9,8 @@ import { BillboardFrame, BuildingWrap, CropTarget, ExhibitionStand, RulerLines, 
 import usePointerGlow from '../hooks/usePointerGlow.js'
 
 const tints = ['blush', 'peach', 'lilac']
+// "2021–26", or "2026–Cont." for the current role.
+const years = ({ start, end }) => <>{start}<span>–{end === 'Present' ? 'Cont.' : end.slice(2)}</span></>
 // One print/OOH object per card, cycling in this order.
 const timelineObjects = [BuildingWrap, BillboardFrame, ExhibitionStand, CropTarget, SwatchFan, RulerLines]
 
@@ -92,27 +94,43 @@ function ExperienceRailSection() {
           <SectionHeader id="experience" {...sections.experience} />
         </div>
         <div className="exp-rail">
-          <ol className="exp-track" ref={trackRef} tabIndex={0} onKeyDown={handleKey} aria-label="Career timeline, newest first">
-            {experience.map(({ role, company, location, start, end, current }, index) => (
+          <ol className="exp-track" ref={trackRef} tabIndex={0} onKeyDown={handleKey} aria-label="Career timeline, newest first" data-reveal="cards">
+            {experience.map(({ role, company, location, start, end, current, stints }, index) => (
               <GlassCard
                 as="li"
                 key={`${company}-${start}`}
                 tint={current ? 'current' : tints[index % tints.length]}
                 object={timelineObjects[index % timelineObjects.length]}
                 className={`exp-card${current ? ' is-current' : ''}`}
+                style={{ '--i': index }}
               >
                 <div className="exp-top">
-                  <span className="exp-years" aria-hidden="true">{start}<span>–{end === 'Present' ? 'Cont.' : end.slice(2)}</span></span>
+                  {stints
+                    ? <span className="exp-years exp-years-sm" aria-hidden="true">{years(stints[0])}</span>
+                    : <span className="exp-years" aria-hidden="true">{years({ start, end })}</span>}
                   <span className="exp-index" aria-hidden="true">
                     {String(experience.length - index).padStart(2, '0')}
                     <ArrowUpRight size={13} />
                   </span>
                 </div>
-                <div className="exp-body">
-                  <p className="sr-only">{start} – {end}</p>
-                  <h3 className="exp-company">{company}</h3>
-                  {current && <p className="exp-role">{role}</p>}
-                </div>
+                {stints ? (
+                  <div className="exp-body exp-stints">
+                    {stints.map((stint, stintIndex) => (
+                      <div key={stint.start} className="exp-stint">
+                        {stintIndex > 0 && <span className="exp-years exp-years-sm" aria-hidden="true">{years(stint)}</span>}
+                        <p className="sr-only">{stint.start} – {stint.end}</p>
+                        <h3 className="exp-company exp-company-sm">{company}</h3>
+                        <p className="exp-role">{stint.role}</p>
+                      </div>
+                    ))}
+                  </div>
+                ) : (
+                  <div className="exp-body">
+                    <p className="sr-only">{start} – {end}</p>
+                    <h3 className="exp-company">{company}</h3>
+                    <p className="exp-role">{role}</p>
+                  </div>
+                )}
                 <p className="exp-meta">
                   {current && <span className="exp-live" aria-hidden="true" />}
                   <MapPin size={14} aria-hidden="true" /> {location}
