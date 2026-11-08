@@ -69,6 +69,7 @@
 }
 
 :root {
+  color-scheme: only light; /* opt out of forced dark mode in Chrome / Samsung Internet */
   --surface: var(--color-paper);
   --surface-alt: var(--color-paper-alt);
   --text: var(--color-ink);
