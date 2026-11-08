@@ -86,9 +86,7 @@ export const about = {
 export const home = {
   ticker: ['Exhibitions', 'Conferences', 'Trade shows', 'Events', 'Brand activations', 'Vehicle wrap', 'Building wrap', 'Creative billboards', 'Fabrication'],
   about: {
-    label: 'About',
-    title: 'Meet',
-    emphasis: 'Ashhad Karim.',
+    title: 'About',
     paragraphs: [
       'Highly experienced Senior Graphic Designer with over 20 years of professional experience in the graphic design, advertising, printing, and production industries.',
       'My diverse industry experience allows me to work across multiple creative disciplines, manage several projects simultaneously, troubleshoot production challenges, and ensure a smooth workflow from initial concept to final execution.',

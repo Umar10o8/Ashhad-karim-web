@@ -14,7 +14,7 @@ function HomeAboutSection() {
       <div className="panel panel-blush">
         <div className="page-wrap about-home-grid">
           <div className="about-home-copy">
-            <SectionHeader id="about" label={copy.label} title={copy.title} emphasis={copy.emphasis} />
+            <SectionHeader id="about" title={copy.title} />
             {copy.paragraphs.map((text) => <p key={text} className="about-home-text" data-reveal>{text}</p>)}
             <p className="about-home-signature" data-reveal>{copy.signature}</p>
           </div>
