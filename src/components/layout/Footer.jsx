@@ -17,7 +17,7 @@ function Footer() {
       </svg>
       <div className="page-wrap footer-grid">
         <div className="footer-intro">
-          <a className="footer-cta" href={url('contact/#contact-form')}>Let’s Talk <ArrowUpRight size={18} aria-hidden="true" /></a>
+          <a className="footer-cta" href={url('#contact')}>Let’s Talk <ArrowUpRight size={18} aria-hidden="true" /></a>
         </div>
         <nav className="footer-col" aria-label="Footer navigation">
           <p className="footer-heading">Menu</p>

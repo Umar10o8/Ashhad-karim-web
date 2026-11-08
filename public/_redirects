@@ -1,0 +1,8 @@
+# The site is now a single page. Send old inner-page links to the matching section
+# (Netlify and Cloudflare Pages; other hosts ignore this file).
+/about     /#about    301
+/about/*   /#about    301
+/contact   /#contact  301
+/contact/* /#contact  301
+/faq       /          301
+/faq/*     /          301

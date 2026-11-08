@@ -50,7 +50,7 @@ function TestimonialsSection() {
   }
 
   return (
-    <Section id="testimonials" className="testimonials-section">
+    <Section id="testimonials" panel="lilac" backdrop={1} className="testimonials-section">
       <SectionHeader id="testimonials" {...sections.testimonials} />
       <div className="quote-layout" onMouseEnter={pause} onMouseLeave={resume} onFocus={pause} onBlur={resume}>
         <figure className="quote-feature" data-reveal>
@@ -65,7 +65,7 @@ function TestimonialsSection() {
               <li key={item.name}>
                 <button type="button" aria-pressed={index === active} onClick={() => setActive(index)}>
                   <span className="quote-index-num">{String(index + 1).padStart(2, '0')}</span>
-                  <span><strong>{item.name}</strong><small>{item.role}</small></span>
+                  <span className="quote-index-who"><strong>{item.name}</strong><small>{item.role}</small></span>
                   {index === active && (
                     <span key={active} className={`quote-progress${paused ? ' is-paused' : ''}`} onAnimationEnd={next} aria-hidden="true" />
                   )}

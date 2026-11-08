@@ -19,8 +19,7 @@ export function smoothScrollTo(target, { instant = false } = {}) {
 }
 
 // The pages render on the client, so the browser cannot jump to a #hash target on load (the
-// element does not exist yet). Do it once the page has rendered, e.g. "Let's Talk" opening
-// /contact/#contact-form straight at the form.
+// element does not exist yet). Do it once the page has rendered, e.g. a shared link to #contact.
 function jumpToInitialHash() {
   if (!window.location.hash) return
   const element = document.getElementById(decodeURIComponent(window.location.hash.slice(1)))

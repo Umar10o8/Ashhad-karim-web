@@ -1,26 +1,20 @@
-import { useRef } from 'react'
 import { about, home } from '../data/content.js'
 import ResponsiveImage from '../components/ui/ResponsiveImage.jsx'
 import SectionBackdrop from '../components/decor/SectionBackdrop.jsx'
-import useParallax from '../hooks/useParallax.js'
+import SectionHeader from '../components/layout/SectionHeader.jsx'
 
 const copy = home.about
 
 // Home-page About: Ashhad's own introduction with a handwritten-style signature, beside the
 // office portrait in an arched frame. The fuller CV-based About section lives on /about/.
 function HomeAboutSection() {
-  const headingRef = useRef(null)
-  useParallax(headingRef, 24)
-
   return (
     <section id="about" className="section section-paneled about-section" aria-labelledby="about-title">
       <SectionBackdrop variant={0} />
       <div className="panel panel-blush">
         <div className="page-wrap about-home-grid">
           <div className="about-home-copy">
-            <h2 id="about-title" className="about-home-label" ref={headingRef}>
-              <span data-reveal>{copy.label}</span>
-            </h2>
+            <SectionHeader id="about" label={copy.label} title={copy.title} emphasis={copy.emphasis} />
             {copy.paragraphs.map((text) => <p key={text} className="about-home-text" data-reveal>{text}</p>)}
             <p className="about-home-signature" data-reveal>{copy.signature}</p>
           </div>

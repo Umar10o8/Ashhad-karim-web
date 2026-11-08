@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" class="is-loading">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -27,13 +27,51 @@
 
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <!-- Start the hero photo download immediately, instead of waiting for the app's JavaScript
+         to render the <img>. Same files and sizes as HeroSection's <picture>. -->
+    <link rel="preload" as="image" type="image/avif" fetchpriority="high" imagesizes="100vw"
+      imagesrcset="/src/assets/images/portrait/hero-horizontal-800.avif 800w, /src/assets/images/portrait/hero-horizontal-1418.avif 1418w" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,400;0,500;0,600;0,700;1,500&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
     <!-- Script font for the signature in the About section, limited to the letters it uses -->
     <link href="https://fonts.googleapis.com/css2?family=Mrs+Saint+Delafield&text=Ashhad%20Karim&display=swap" rel="stylesheet" />
+
+    <!-- Loading screen. Inlined so it paints on the very first frame, before any CSS or JS
+         arrives. src/utils/preloader.js lifts it once the hero photo and fonts are ready; if the
+         app never starts, the failsafe animation hides it after 8s anyway. -->
+    <style>
+      html.is-loading { overflow: hidden; }
+      #preloader { position: fixed; z-index: 9999; inset: 0; display: grid; place-items: center; overflow: hidden; color: #fff; background: radial-gradient(60% 50% at 50% 110%, rgb(201 0 80 / .35), transparent 70%), #1C1019; animation: pl-failsafe .6s ease 8s forwards; transition: transform .9s cubic-bezier(.76, 0, .24, 1), opacity .5s ease; }
+      #preloader.is-done { transform: translateY(-100%); pointer-events: none; }
+      .pl-inner { display: grid; justify-items: center; gap: 14px; padding: 0 24px; text-align: center; }
+      .pl-name { display: flex; margin: 0; overflow: hidden; font-family: 'Barlow Condensed', 'Arial Narrow', sans-serif; font-size: clamp(48px, 9vw, 104px); font-weight: 600; letter-spacing: -.02em; line-height: 1.05; }
+      .pl-name span { display: inline-block; white-space: pre; transform: translateY(110%); animation: pl-rise .8s cubic-bezier(.22, 1, .36, 1) forwards; animation-delay: calc(var(--i) * 45ms + 100ms); }
+      .pl-name .pl-dot { color: #E5106A; }
+      .pl-role { margin: 0; color: rgb(255 255 255 / .7); font-family: 'DM Sans', system-ui, sans-serif; font-size: clamp(13px, 1.3vw, 16px); font-weight: 600; letter-spacing: .02em; opacity: 0; animation: pl-fade .6s ease .7s forwards; }
+      .pl-bar { position: relative; width: min(240px, 60vw); height: 3px; margin-top: 14px; overflow: hidden; background: rgb(255 255 255 / .14); border-radius: 3px; }
+      .pl-bar span { position: absolute; inset: 0; background: linear-gradient(90deg, #C90050, #F0679A); border-radius: inherit; transform: scaleX(0); transform-origin: left; animation: pl-progress 2.4s cubic-bezier(.3, .7, .4, 1) .3s forwards; transition: transform .35s ease; }
+      #preloader.is-complete .pl-bar span { animation: none; transform: scaleX(1); }
+      @keyframes pl-rise { to { transform: translateY(0); } }
+      @keyframes pl-fade { to { opacity: 1; } }
+      @keyframes pl-progress { to { transform: scaleX(.88); } }
+      @keyframes pl-failsafe { to { opacity: 0; visibility: hidden; } }
+      @media (prefers-reduced-motion: reduce) {
+        #preloader { transition: opacity .3s ease; }
+        #preloader.is-done { transform: none; opacity: 0; }
+        .pl-name span, .pl-role { transform: none; opacity: 1; animation: none; }
+        .pl-bar span { animation: none; transform: scaleX(.5); }
+      }
+    </style>
   </head>
-  <body data-page="home">
+  <body>
+    <div id="preloader" aria-hidden="true">
+      <div class="pl-inner">
+        <p class="pl-name"><span style="--i:0">A</span><span style="--i:1">s</span><span style="--i:2">h</span><span style="--i:3">h</span><span style="--i:4">a</span><span style="--i:5">d</span><span style="--i:6"> </span><span style="--i:7">K</span><span style="--i:8">a</span><span style="--i:9">r</span><span style="--i:10">i</span><span style="--i:11">m</span><span class="pl-dot" style="--i:12">.</span></p>
+        <p class="pl-role">Senior Graphic Designer · Print Production Specialist</p>
+        <div class="pl-bar"><span></span></div>
+      </div>
+    </div>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
   </body>

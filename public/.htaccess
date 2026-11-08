@@ -1,0 +1,37 @@
+# Cache and compression rules for Apache / LiteSpeed hosts (Hostinger, cPanel and similar).
+# Other hosts ignore this file.
+
+<IfModule mod_headers.c>
+  # Hashed build files (/assets/*-<hash>.*): a changed file always gets a new name, so cache
+  # them for a year.
+  <If "%{REQUEST_URI} =~ m#^/assets/#">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </If>
+  # The page itself is re-checked on every visit so a new deploy shows up straight away.
+  <FilesMatch "\.html$">
+    Header set Cache-Control "public, max-age=0, must-revalidate"
+  </FilesMatch>
+  # Icons and the social preview image: one week.
+  <FilesMatch "^(favicon\.svg|apple-touch-icon\.png|og-image\.jpg)$">
+    Header set Cache-Control "public, max-age=604800"
+  </FilesMatch>
+</IfModule>
+
+# Compress text files on the way out.
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css text/javascript application/javascript application/json image/svg+xml
+</IfModule>
+
+# Correct types for modern image formats.
+<IfModule mod_mime.c>
+  AddType image/avif .avif
+  AddType image/webp .webp
+</IfModule>
+
+# The site is now a single page. Send old inner-page links to the matching section.
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteRule ^about/?(.*)$ /#about [R=301,NE,L]
+  RewriteRule ^contact/?(.*)$ /#contact [R=301,NE,L]
+  RewriteRule ^faq/?(.*)$ / [R=301,L]
+</IfModule>

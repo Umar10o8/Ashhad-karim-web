@@ -1,6 +1,6 @@
 import { Building2, Layers, Users } from 'lucide-react'
 import { sections } from '../data/content.js'
-import { aboutPage } from '../data/pages.js'
+import { achievementStats } from '../data/pages.js'
 import achievements from '../data/achievements.js'
 import SectionHeader from '../components/layout/SectionHeader.jsx'
 import Section from '../components/layout/Section.jsx'
@@ -9,8 +9,8 @@ import CountUp from '../components/home/CountUp.jsx'
 import { CmykDots, CropCorner, Skyline } from '../components/decor/PrintObjects.jsx'
 
 const copy = sections.achievements
-const [lead, ...stats] = aboutPage.glance.stats
-// One line icon per supporting figure, in the order of aboutPage.glance.stats:
+const [lead, ...stats] = achievementStats
+// One line icon per supporting figure, in the order of achievementStats:
 // companies, team, projects at once.
 const statIcons = [Building2, Users, Layers]
 const deliverTints = ['blush', 'peach', 'lilac', 'peach', 'lilac', 'blush']

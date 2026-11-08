@@ -1,6 +1,5 @@
 import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
-import { resolve } from 'node:path'
 import { defineConfig, loadEnv } from 'vite'
 
 // Social previews and search engines need absolute URLs. Once the live domain is known, set
@@ -29,16 +28,5 @@ export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), '')
   return {
     plugins: [react(), tailwindcss(), siteUrlTags(env.SITE_URL)],
-    // One HTML file per page, so /about/, /faq/ and /contact/ work on any static host.
-    build: {
-      rollupOptions: {
-        input: {
-          home: resolve(import.meta.dirname, 'index.html'),
-          about: resolve(import.meta.dirname, 'about/index.html'),
-          faq: resolve(import.meta.dirname, 'faq/index.html'),
-          contact: resolve(import.meta.dirname, 'contact/index.html'),
-        },
-      },
-    },
   }
 })

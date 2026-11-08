@@ -7,8 +7,6 @@ import heroSmAvif from '../assets/images/portrait/hero-horizontal-800.avif'
 import heroLgAvif from '../assets/images/portrait/hero-horizontal-1418.avif'
 import aboutSm from '../assets/images/portrait/about-office-800.webp'
 import aboutLg from '../assets/images/portrait/about-office-1600.webp'
-import thinkingSm from '../assets/images/portrait/portrait-thinking-600.webp'
-import thinkingLg from '../assets/images/portrait/portrait-thinking-848.webp'
 import nightSm from '../assets/images/portrait/riyadh-night-street-1000.webp'
 import nightLg from '../assets/images/portrait/riyadh-night-street-2000.webp'
 import studioLogo from '../assets/images/karim-creative-studio.svg'
@@ -51,7 +49,7 @@ export const hero = {
     { mono: 'CAD', name: 'AutoCAD', color: '#FFFFFF', bg: '#E51050', logo: cadLogo },
     { mono: 'Su', name: 'SketchUp', color: '#FFFFFF', bg: '#005F9E', logo: suLogo },
   ],
-  cta: { label: 'Let’s Talk', href: url('contact/#contact-form') },
+  cta: { label: 'Let’s Talk', href: url('#contact') },
   // Supplied photo of Ashhad. Set `placeholder: true` (and a `credit`) only for stock images.
   image: {
     ...responsiveAsset({ small: heroSm, large: heroLg, width: 1418, height: 791 }),
@@ -74,11 +72,6 @@ export const about = {
     ...responsiveAsset({ small: aboutSm, large: aboutLg, width: 1600, height: 893 }),
     alt: 'Ashhad Karim smiling at his desk in a bright office',
   },
-  // Close portrait used on the About page, so it does not repeat the home-page photo.
-  portraitAlt: {
-    ...responsiveAsset({ small: thinkingSm, large: thinkingLg, width: 848, height: 1264, smallWidth: 600 }),
-    alt: 'Ashhad Karim, chin resting on his hand, in a light green shirt',
-  },
   strengths: [
     'Production coordination',
     'Pre-production workflow management',
@@ -94,6 +87,8 @@ export const home = {
   ticker: ['Exhibitions', 'Conferences', 'Trade shows', 'Events', 'Brand activations', 'Vehicle wrap', 'Building wrap', 'Creative billboards', 'Fabrication'],
   about: {
     label: 'About',
+    title: 'Meet',
+    emphasis: 'Ashhad Karim.',
     paragraphs: [
       'Highly experienced Senior Graphic Designer with over 20 years of professional experience in the graphic design, advertising, printing, and production industries.',
       'My diverse industry experience allows me to work across multiple creative disciplines, manage several projects simultaneously, troubleshoot production challenges, and ensure a smooth workflow from initial concept to final execution.',
@@ -103,7 +98,7 @@ export const home = {
   },
   // Home-page headings; the About page keeps the fuller versions in `sections`.
   skillsHeading: { title: 'Software', emphasis: 'skills.', intro: undefined },
-  contactLink: { label: 'Let’s Talk', href: url('contact/#contact-form') },
+  contactLink: { label: 'Let’s Talk', href: url('#contact') },
 }
 
 export const sections = {

@@ -1,19 +1,16 @@
 import navigation from '../../data/navigation.js'
-import { currentPage } from '../../utils/paths.js'
 
-// Links shared by the header and footer. Links are active on their page or matching home section.
+// Links shared by the header and footer. A link is active while its section is on screen.
 function NavLinks({ activeId, onNavigate, linkClassName }) {
-  return navigation.map(({ id, label, href, page }) => {
-    const isPage = page === currentPage
-    const isSection = currentPage === 'home' && activeId === id
-    const isActive = isPage || isSection
+  return navigation.map(({ id, label, href }) => {
+    const isActive = activeId === id
     return (
       <a
         key={id}
         href={href}
         onClick={onNavigate}
         className={`${linkClassName}${isActive ? ' is-active' : ''}`}
-        aria-current={isPage ? 'page' : isSection ? 'location' : undefined}
+        aria-current={isActive ? 'location' : undefined}
       >
         {label}
       </a>

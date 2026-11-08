@@ -1,11 +1,9 @@
 import { url } from '../utils/paths.js'
 
-// Header and footer links. `page` links go to their own HTML page; `section` links jump to a
-// section of the home page and are highlighted while that section is on screen.
-// The FAQ and Contact pages still exist but are not linked from the menu for now
-// (the header's Let’s Talk button still opens the contact page).
+// Header and footer links. Each jumps to a section of the page and is highlighted while that
+// section is on screen.
 const navigation = [
-  { id: 'about', label: 'About', href: url('about/'), page: 'about' },
+  { id: 'about', label: 'About', href: url('#about'), section: true },
   { id: 'experience', label: 'Experience', href: url('#experience'), section: true },
   { id: 'skills', label: 'Skills', href: url('#skills'), section: true },
   { id: 'achievements', label: 'Achievements', href: url('#achievements'), section: true },

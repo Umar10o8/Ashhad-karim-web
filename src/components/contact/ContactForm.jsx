@@ -1,10 +1,10 @@
 import { useState } from 'react'
 import { Send } from 'lucide-react'
 import contact from '../../config/contact.js'
-import { contactPage } from '../../data/pages.js'
+import { contactForm } from '../../data/pages.js'
 import Button from '../ui/Button.jsx'
 
-const copy = contactPage.form
+const copy = contactForm
 const endpoint = contact.formEndpoint
 
 // Shown under a required field once it has been left empty.
