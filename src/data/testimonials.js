@@ -29,7 +29,7 @@ const testimonials = [
   {
     quote: 'Ashhad has a great understanding of his work and brings a positive attitude to every project. His dedication and consistency make collaboration easy and productive.',
     name: 'Tariq Mian',
-    role: 'CEO, Image Graphic Solutions Pvt Ltd',
+    role: 'CEO, Image Graphic Solutions',
     placeholder: false,
   },
   {

@@ -473,7 +473,7 @@ h1 em, h2 em { color: var(--accent); font-family: var(--font-display); font-styl
 .about-home-grid { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr); align-items: center; gap: clamp(48px, 7vw, 120px); }
 .about-home-copy { max-width: 600px; }
 #about-title { color: var(--color-magenta); }
-.about-home-text { margin: 0 0 var(--space-5); color: var(--color-ink); font-size: clamp(17px, 1.35vw, 20px); line-height: 1.65; text-align: justify; hyphens: manual; }
+.about-home-text { margin: 0 0 var(--space-5); color: var(--color-ink); font-size: clamp(17px, 1.35vw, 20px); line-height: 1.65; text-align: justify; text-align-last: left; -webkit-hyphens: auto; hyphens: auto; hyphenate-limit-chars: 7 3 3; text-wrap: pretty; }
 .about-home-signature { margin: var(--space-5) 0 0; color: var(--color-ink); font-family: 'Mrs Saint Delafield', 'Brush Script MT', cursive; font-size: 64px; font-weight: 400; line-height: 1.1; text-align: right; }
 /* Arched photo with an offset glass frame and a glass badge over the corner */
 .about-home-portrait { position: relative; width: min(100%, 500px); margin: 0 28px 28px auto; }
@@ -497,17 +497,14 @@ h1 em, h2 em { color: var(--accent); font-family: var(--font-display); font-styl
 .exp-track:focus-visible { outline-offset: -4px; border-radius: var(--radius-lg); }
 .exp-card { display: flex; flex: 0 0 clamp(272px, 76vw, 366px); flex-direction: column; min-height: 360px; padding: 26px; scroll-snap-align: start; transform: perspective(1000px) rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg)); }
 .exp-card .gcard-object { width: 50%; right: -8%; bottom: -10%; }
-.exp-top { display: flex; align-items: start; justify-content: space-between; gap: var(--space-4); margin-bottom: var(--space-6); }
+.exp-top { display: flex; align-items: start; justify-content: space-between; gap: var(--space-4); margin-bottom: var(--space-4); }
 .exp-years { font-family: var(--font-display); font-size: clamp(44px, 3.8vw, 58px); font-weight: 500; letter-spacing: -.03em; line-height: .9; white-space: nowrap; background: var(--gradient-text); -webkit-background-clip: text; background-clip: text; color: transparent; }
 .exp-years span { font-size: 1em; }
 .exp-index { display: inline-flex; align-items: center; gap: 4px; padding: 5px 10px; color: var(--color-berry); background: rgb(255 255 255 / .7); border: 1px solid var(--glass-border); border-radius: var(--radius-full); box-shadow: var(--glass-highlight); font-size: 12px; font-weight: 700; font-variant-numeric: tabular-nums; }
 .exp-role { margin: var(--space-2) 0 0; color: inherit; font-size: 15px; font-weight: 500; line-height: 1.4; opacity: .85; }
 .exp-card.is-current .exp-role { font-size: 17px; font-weight: 600; opacity: 1; }
-.exp-years-sm { font-size: clamp(34px, 2.8vw, 42px); }
-.exp-stints { display: grid; gap: var(--space-5); }
-.exp-stint { display: grid; gap: 2px; }
-.exp-stint > .exp-years-sm { margin-bottom: var(--space-3); }
-.exp-company-sm { font-family: inherit; font-size: 18px; font-weight: 700; letter-spacing: 0; }
+.exp-stints { display: grid; gap: var(--space-6); }
+.exp-stint > .exp-years { display: block; margin-bottom: var(--space-4); }
 .exp-company { margin: 0; color: inherit; font-family: var(--font-display); font-size: clamp(26px, 2.4vw, 32px); font-weight: 500; letter-spacing: -.025em; line-height: 1.1; }
 .exp-meta { display: flex; align-items: center; gap: 6px; margin: auto 0 0; padding-top: var(--space-5); color: var(--color-ink); font-size: 16px; font-weight: 700; letter-spacing: .01em; }
 .exp-meta .lucide { color: var(--color-magenta); }
@@ -707,6 +704,7 @@ h1 em, h2 em { color: var(--accent); font-family: var(--font-display); font-styl
 .quote-index button { position: relative; display: grid; grid-template-columns: 40px 1fr; gap: var(--space-4); width: 100%; padding: var(--space-5) 0; color: var(--text-muted); text-align: left; background: none; border: 0; border-bottom: 1px solid var(--color-line-strong); cursor: pointer; }
 .quote-index button[aria-pressed="true"] { color: var(--color-ink); }
 .quote-index-who { display: flex; flex-direction: column; gap: 2px; }
+.quote-index-who > strong, .quote-index-who > small { display: block; }
 .quote-progress { position: absolute; bottom: -1px; left: 0; width: 100%; height: 2px; background: linear-gradient(90deg, var(--color-magenta), var(--color-magenta-300)); transform-origin: left; animation: quote-timer 7s linear both; }
 .quote-progress.is-paused { animation-play-state: paused; }
 @keyframes quote-timer { from { transform: scaleX(0); } }
@@ -779,15 +777,19 @@ h1 em, h2 em { color: var(--accent); font-family: var(--font-display); font-styl
 
 @media (max-width: 767px) {
   .hero-inner { padding-top: 0; }
-  .hero-kicker { position: static; }
+  /* Kicker sits just under the header, above the photo band, not down by the headline */
+  .hero-kicker { position: absolute; top: calc(var(--header-space) - var(--hero-pad-top)); left: 0; margin: 0; }
   :root { --header-top: 10px; --header-h: 60px; --ticker-h: 52px; }
   .wordmark-name { font-size: 21px; }
-  .wordmark-title { max-width: 210px; font-size: 9.5px; white-space: normal; }
+  .wordmark-title { font-size: 11px; white-space: nowrap; }
+  .wordmark-title-extra { display: none; }
+  /* Keep "Out of Home Advertising" on one line on phones */
+  #experience-title .highlight { font-size: min(1em, 9.6vw); white-space: nowrap; }
   .hdr-pill { padding-right: 7px; }
   .scroll-progress { right: 22px; left: 22px; }
 
   /* Photo as a band across the top so the headline starts below the subject's face */
-  .hero { align-items: flex-start; min-height: 0; padding: 336px 0 104px; }
+  .hero { --hero-pad-top: 336px; align-items: flex-start; min-height: 0; padding: var(--hero-pad-top) 0 104px; }
   .hero-media { inset: 40px 0 auto 0; height: 500px; }
   .hero-media img { object-position: 92% 20%; }
   .hero-shade { background:
@@ -848,7 +850,6 @@ h1 em, h2 em { color: var(--accent); font-family: var(--font-display); font-styl
 }
 
 @media (max-width: 480px) {
-  .wordmark-title { max-width: 168px; }
   .hero-actions .btn { width: 100%; }
   .contact-panel-main { padding-inline: 22px; }
   .contact-cards { grid-template-columns: 1fr; }

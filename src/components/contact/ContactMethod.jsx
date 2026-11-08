@@ -15,7 +15,7 @@ function ContactMethod({ icon, label, value, href, links, ...rest }) {
       <div className="contact-card">
         <IconBadge icon={icon} tone="solid" />
         <span>
-          <small>{label}</small>
+          <small className="sr-only">{label}</small>
           {links.map((link) => <a key={link.href} className="contact-card-line" href={link.href}>{link.value}</a>)}
         </span>
         <ArrowUpRight size={18} className="contact-arrow" aria-hidden="true" />
@@ -26,7 +26,7 @@ function ContactMethod({ icon, label, value, href, links, ...rest }) {
   return (
     <a className="contact-card" href={href} {...rest}>
       <IconBadge icon={icon} tone="solid" />
-      <span><small>{label}</small>{breakable(value)}</span>
+      <span><small className="sr-only">{label}</small>{breakable(value)}</span>
       <ArrowUpRight size={18} className="contact-arrow" aria-hidden="true" />
     </a>
   )

@@ -105,9 +105,7 @@ function ExperienceRailSection() {
                 style={{ '--i': index }}
               >
                 <div className="exp-top">
-                  {stints
-                    ? <span className="exp-years exp-years-sm" aria-hidden="true">{years(stints[0])}</span>
-                    : <span className="exp-years" aria-hidden="true">{years({ start, end })}</span>}
+                  <span className="exp-years" aria-hidden="true">{years(stints ? stints[0] : { start, end })}</span>
                   <span className="exp-index" aria-hidden="true">
                     {String(experience.length - index).padStart(2, '0')}
                     <ArrowUpRight size={13} />
@@ -117,9 +115,9 @@ function ExperienceRailSection() {
                   <div className="exp-body exp-stints">
                     {stints.map((stint, stintIndex) => (
                       <div key={stint.start} className="exp-stint">
-                        {stintIndex > 0 && <span className="exp-years exp-years-sm" aria-hidden="true">{years(stint)}</span>}
+                        {stintIndex > 0 && <span className="exp-years" aria-hidden="true">{years(stint)}</span>}
                         <p className="sr-only">{stint.start} – {stint.end}</p>
-                        <h3 className="exp-company exp-company-sm">{company}</h3>
+                        <h3 className="exp-company">{company}</h3>
                         <p className="exp-role">{stint.role}</p>
                       </div>
                     ))}
