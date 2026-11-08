@@ -16,6 +16,11 @@ const timelineObjects = [BuildingWrap, BillboardFrame, ExhibitionStand, CropTarg
 
 // Home-page experience: a horizontal scroll-snap timeline. Works with touch swipes, trackpads,
 // mouse drag, the arrow keys (while the track has focus), and the previous/next buttons.
+// A dot between letters (as in "THE.TEAM") is raised to sit mid-height on the capitals.
+const companyName = (name) => name.split(/(?<=\w)\.(?=\w)/).flatMap((part, index) => (
+  index ? [<span key={index} className="exp-company-dot">.</span>, part] : [part]
+))
+
 function ExperienceRailSection() {
   const trackRef = useRef(null)
   const [progress, setProgress] = useState(0)
@@ -117,7 +122,7 @@ function ExperienceRailSection() {
                       <div key={stint.start} className="exp-stint">
                         {stintIndex > 0 && <span className="exp-years" aria-hidden="true">{years(stint)}</span>}
                         <p className="sr-only">{stint.start} – {stint.end}</p>
-                        <h3 className="exp-company">{company}</h3>
+                        <h3 className="exp-company">{companyName(company)}</h3>
                         <p className="exp-role">{stint.role}</p>
                       </div>
                     ))}
@@ -125,7 +130,7 @@ function ExperienceRailSection() {
                 ) : (
                   <div className="exp-body">
                     <p className="sr-only">{start} – {end}</p>
-                    <h3 className="exp-company">{company}</h3>
+                    <h3 className="exp-company">{companyName(company)}</h3>
                     <p className="exp-role">{role}</p>
                   </div>
                 )}

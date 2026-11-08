@@ -403,8 +403,8 @@ h1 em, h2 em { color: var(--accent); font-family: var(--font-display); font-styl
 .hero-copy { max-width: 920px; }
 /* The eyebrow is pinned just under the header; the headline block stays centred below it. */
 .hero-inner { padding-top: clamp(52px, 8vh, 72px); }
-.hero-kicker { position: absolute; top: 0; left: 0; }
-.hero-kicker { display: flex; align-items: center; gap: 12px; margin: 0 0 clamp(16px, 3vh, 32px); color: var(--color-white); font-size: clamp(15px, 1.2vw, 18px); font-weight: 600; letter-spacing: .04em; text-transform: uppercase; }
+.hero-kicker-wrap { position: absolute; z-index: 2; top: var(--header-space); right: 0; left: 0; }
+.hero-kicker { display: flex; align-items: center; gap: 12px; margin: 0; color: var(--color-white); font-size: clamp(15px, 1.2vw, 18px); font-weight: 600; letter-spacing: .04em; text-transform: uppercase; }
 .hero-kicker span { width: 36px; height: 6px; flex: 0 0 36px; background: linear-gradient(135deg, var(--color-magenta), var(--color-magenta-600)); border-radius: 3px; }
 
 /* Rotating headline: slides share one grid cell, so the block keeps the tallest slide's height.
@@ -506,6 +506,7 @@ h1 em, h2 em { color: var(--accent); font-family: var(--font-display); font-styl
 .exp-stints { display: grid; gap: var(--space-6); }
 .exp-stint > .exp-years { display: block; margin-bottom: var(--space-4); }
 .exp-company { margin: 0; color: inherit; font-family: var(--font-display); font-size: clamp(26px, 2.4vw, 32px); font-weight: 500; letter-spacing: -.025em; line-height: 1.1; }
+.exp-company-dot { display: inline-block; transform: translateY(-.26em); }
 .exp-meta { display: flex; align-items: center; gap: 6px; margin: auto 0 0; padding-top: var(--space-5); color: var(--color-ink); font-size: 16px; font-weight: 700; letter-spacing: .01em; }
 .exp-meta .lucide { color: var(--color-magenta); }
 .exp-card.is-current .exp-years { background: var(--gradient-text-light); -webkit-background-clip: text; background-clip: text; }
@@ -777,8 +778,6 @@ h1 em, h2 em { color: var(--accent); font-family: var(--font-display); font-styl
 
 @media (max-width: 767px) {
   .hero-inner { padding-top: 0; }
-  /* Kicker sits just under the header, above the photo band, not down by the headline */
-  .hero-kicker { position: absolute; top: calc(var(--header-space) - var(--hero-pad-top)); left: 0; margin: 0; }
   :root { --header-top: 10px; --header-h: 60px; --ticker-h: 52px; }
   .wordmark-name { font-size: 21px; }
   .wordmark-title { font-size: 11px; white-space: nowrap; }
@@ -789,7 +788,7 @@ h1 em, h2 em { color: var(--accent); font-family: var(--font-display); font-styl
   .scroll-progress { right: 22px; left: 22px; }
 
   /* Photo as a band across the top so the headline starts below the subject's face */
-  .hero { --hero-pad-top: 336px; align-items: flex-start; min-height: 0; padding: var(--hero-pad-top) 0 104px; }
+  .hero { align-items: flex-start; min-height: 0; padding: 336px 0 104px; }
   .hero-media { inset: 40px 0 auto 0; height: 500px; }
   .hero-media img { object-position: 92% 20%; }
   .hero-shade { background:

@@ -41,11 +41,14 @@ function HeroSection() {
       <div className="hero-shade" aria-hidden="true" />
       {image.placeholder && <PlaceholderTag>Representative industry image</PlaceholderTag>}
 
+      <div className="page-wrap hero-kicker-wrap">
+        <p className="hero-kicker"><span aria-hidden="true" />{hero.eyebrow}</p>
+      </div>
+
       <div className="page-wrap hero-inner">
 
         <div className="hero-copy">
           <h1 id="home-title" className="sr-only">{hero.name}: {hero.focus}</h1>
-          <p className="hero-kicker"><span aria-hidden="true" />{hero.eyebrow}</p>
 
           <div
             className="hero-slides"
