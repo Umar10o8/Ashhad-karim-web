@@ -671,6 +671,9 @@ h1 em, h2 em { color: var(--accent); font-family: var(--font-display); font-styl
 .has-reveal .footer-word:not(.is-visible) { opacity: 1; transform: none; }
 .footer-bottom { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--space-4); margin-top: var(--space-6); padding-block: var(--space-5); color: rgb(255 255 255 / .78); border-top: 1px solid rgb(255 255 255 / .14); font-size: 13px; }
 .footer-bottom small { font-size: inherit; }
+.footer-credit strong { color: var(--color-white); font-weight: 600; }
+.footer-credit a { color: var(--color-magenta-200); overflow-wrap: anywhere; transition: color var(--duration-fast); }
+.footer-credit a:hover { color: var(--color-white); }
 .back-top { display: inline-flex; align-items: center; gap: var(--space-2); transition: color var(--duration-fast); }
 .back-top:hover { color: var(--color-white); }
 
@@ -882,4 +885,11 @@ h1 em, h2 em { color: var(--accent); font-family: var(--font-display); font-styl
   .marquee-track { width: auto; flex: 1; justify-content: center; animation: none; }
   .marquee-group { flex-wrap: wrap; justify-content: center; row-gap: 10px; }
   .marquee-group[aria-hidden] { display: none; }
+}
+
+/* Samsung Internet's "Dark mode" recolours any site that has no dark-scheme styles of its own.
+   Declaring a dark-scheme block (that keeps the same light design) makes it leave the site alone. */
+@media (prefers-color-scheme: dark) {
+  :root { color-scheme: only light; }
+  html, body { background-color: var(--color-paper); }
 }

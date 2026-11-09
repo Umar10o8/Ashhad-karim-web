@@ -1,5 +1,6 @@
 import { ArrowUp, ArrowUpRight } from 'lucide-react'
 import contact, { mailtoHref, phoneLinks } from '../../config/contact.js'
+import credit from '../../config/credit.js'
 import NavLinks from '../navigation/NavLinks.jsx'
 import PlaceholderTag from '../ui/PlaceholderTag.jsx'
 import { url } from '../../utils/paths.js'
@@ -38,6 +39,13 @@ function Footer() {
 
       <div className="page-wrap footer-bottom">
         <small>© {currentYear} Ashhad Karim. All rights reserved.</small>
+        {credit.name && (
+          <small className="footer-credit">
+            {credit.label} <strong>{credit.name}</strong>
+            {credit.company && <> · {credit.company}</>}
+            {credit.email && <> · <a href={`mailto:${credit.email}`}>{credit.email}</a></>}
+          </small>
+        )}
         <a href="#main" className="back-top">Back to top <ArrowUp size={14} aria-hidden="true" /></a>
       </div>
     </footer>
