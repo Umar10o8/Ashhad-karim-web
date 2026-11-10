@@ -888,3 +888,11 @@ h1 em, h2 em { color: var(--accent); font-family: var(--font-display); font-styl
   .marquee-group { flex-wrap: wrap; justify-content: center; row-gap: 10px; }
   .marquee-group[aria-hidden] { display: none; }
 }
+
+/* Samsung Internet only skips its forced "Dark mode" when the page ships its own dark-scheme
+   styles. This block is that signal; it re-states the light design, so nothing turns dark.
+   Keep it together with `color-scheme: light dark` on :root (Chrome / Edge use that signal). */
+@media (prefers-color-scheme: dark) {
+  :root { color: var(--text); background: var(--color-cream); }
+  body { color-scheme: light; background: var(--gradient-page); }
+}
